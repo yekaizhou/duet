@@ -30,6 +30,6 @@ samtools view -buS -@40 HG00733_1_Guppy_4.2.2_prom.sam | samtools sort -@40 -O b
 samtools view -bS -s 0.42983715 -@40 HG00733_1_Guppy_4.2.2_prom.bam > HG00733_8X.bam
 
 # results in files for further utilization:
-# Reference: hg38.no_alt.fa
-# Truth SV callset: NA12878_truthset.vcf NA24385_truthset.vcf HG00733_truthset.vcf
-# Alignment: NA12878_8X.bam NA24385_8X.bam HG00733_8X.bam
+#   Reference: hg38.no_alt.fa
+#   Truth SV callset: NA12878_truthset.vcf NA24385_truthset.vcf HG00733_truthset.vcf
+#   Alignment: NA12878_8X.bam NA24385_8X.bam HG00733_8X.bam
