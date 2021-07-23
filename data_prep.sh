@@ -17,17 +17,24 @@ bcftools view -p -c1 -Ov -s HG00733 -o HG00733_truthset.vcf variants_freeze4_sv_
 
 # download HG001, HG002, and HG00733 ONT reads called by Guppy4.2.2
 wget https://s3-us-west-2.amazonaws.com/human-pangenomics/NHGRI_UCSC_panel/HG001/nanopore/Guppy_4.2.2/HG001_NBT2018_Guppy_4.2.2.fastq.gz
-minimap2 -ax map-ont hg38.no_alt.fa HG001_NBT2018_Guppy_4.2.2.fastq.gz -t 40 -o HG001_NBT2018_Guppy_4.2.2.sam
-samtools view -buS -@40 HG001_NBT2018_Guppy_4.2.2.sam | samtools sort -@40 -O bam -T ./ - > HG001_NBT2018_Guppy_4.2.2.bam
-samtools view -bS -s 0.23992754 -@40 HG001_NBT2018_Guppy_4.2.2.bam > NA12878_8X.bam
 wget https://s3-us-west-2.amazonaws.com/human-pangenomics/NHGRI_UCSC_panel/HG002/nanopore/Guppy_4.2.2/HG002_GIAB_PromethION_Guppy_4.2.2_prom.fastq.gz
-minimap2 -ax map-ont hg38.no_alt.fa HG002_GIAB_PromethION_Guppy_4.2.2_prom.fastq.gz -t 40 -o HG002_GIAB_PromethION_Guppy_4.2.2_prom.sam
-samtools view -buS -@40 HG002_GIAB_PromethION_Guppy_4.2.2_prom.sam | samtools sort -@40 -O bam -T ./ - > HG002_GIAB_PromethION_Guppy_4.2.2_prom.bam
-samtools view -bS -s 0.52230572 -@40 HG002_GIAB_PromethION_Guppy_4.2.2_prom.bam > NA24385_8X.bam
 wget https://s3-us-west-2.amazonaws.com/human-pangenomics/NHGRI_UCSC_panel/HG00733/nanopore/Guppy_4.2.2/HG00733_1_Guppy_4.2.2_prom.fastq.gz
+
+minimap2 -ax map-ont hg38.no_alt.fa HG001_NBT2018_Guppy_4.2.2.fastq.gz -t 40 -o HG001_NBT2018_Guppy_4.2.2.sam
+minimap2 -ax map-ont hg38.no_alt.fa HG002_GIAB_PromethION_Guppy_4.2.2_prom.fastq.gz -t 40 -o HG002_GIAB_PromethION_Guppy_4.2.2_prom.sam
 minimap2 -ax map-ont hg38.no_alt.fa HG00733_1_Guppy_4.2.2_prom.fastq.gz -t 40 -o HG00733_1_Guppy_4.2.2_prom.sam
+
+samtools view -buS -@40 HG001_NBT2018_Guppy_4.2.2.sam | samtools sort -@40 -O bam -T ./ - > HG001_NBT2018_Guppy_4.2.2.bam
+samtools view -buS -@40 HG002_GIAB_PromethION_Guppy_4.2.2_prom.sam | samtools sort -@40 -O bam -T ./ - > HG002_GIAB_PromethION_Guppy_4.2.2_prom.bam
 samtools view -buS -@40 HG00733_1_Guppy_4.2.2_prom.sam | samtools sort -@40 -O bam -T ./ - > HG00733_1_Guppy_4.2.2_prom.bam
+
+samtools view -bS -s 0.23992754 -@40 HG001_NBT2018_Guppy_4.2.2.bam > NA12878_8X.bam
+samtools view -bS -s 0.52230572 -@40 HG002_GIAB_PromethION_Guppy_4.2.2_prom.bam > NA24385_8X.bam
 samtools view -bS -s 0.42983715 -@40 HG00733_1_Guppy_4.2.2_prom.bam > HG00733_8X.bam
+
+samtools index -@40 NA12878_8X.bam
+samtools index -@40 NA24385_8X.bam
+samtools index -@40 HG00733_8X.bam
 
 # results in files for further utilization:
 #   Reference: hg38.no_alt.fa
