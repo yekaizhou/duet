@@ -2,7 +2,7 @@ import os
 import logging
 import time
 import sys
-from accessories import set_logging, parse_args
+from utils import set_logging, parse_args, check_envs
 from snp_calling import snp_calling
 from snp_phasing import snp_phasing
 from sv_calling import sv_calling
@@ -10,6 +10,7 @@ from sv_phasing import sv_phasing
 
 def main(argv):
     args = parse_args(argv)
+    check_envs(args.REFERENCE, args.BAM)
     if not os.path.exists(args.OUTPUT):
         os.makedirs(args.OUTPUT)
     set_logging(args.OUTPUT)
