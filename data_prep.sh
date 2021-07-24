@@ -1,4 +1,5 @@
 # enter a folder for data download, storage and process
+mkdir duet_data
 
 # download and process hg38 reference genome used for HGSVC2 SV characterization
 wget http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/HGSVC2/technical/reference/20200513_hg38_NoALT/hg38.no_alt.fa.gz
