@@ -1,5 +1,7 @@
 import logging
 import argparse
+import sys
+import os
 
 def set_logging(home):
     logFormatter = logging.Formatter("%(asctime)s [%(levelname)s] %(message)s", datefmt = '%H:%M:%S')
@@ -33,3 +35,9 @@ def parse_args(argv):
         help = 'working and output directory (existing files in the directory will be overwritten)')
     args = parser.parse_args()
     return args
+
+def check_envs(ref_path, aln_path):
+    if not os.path.exists(aln_path + '.bai'):
+        sys.exit("[ERROR] Alignment index .bai file not found, please run 'samtools index " + aln_path + "' first")
+    if not os.path.exists(ref_path + '.fai'):
+        sys.exit("[ERROR] Reference index .fai file not found, please run 'samtools faidx " + ref_path + "' first")
