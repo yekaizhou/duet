@@ -1,3 +1,5 @@
+# make sure there are minimap2 and samtools etc in current environment
+
 # enter a folder for data download, storage and process
 mkdir duet_data && cd duet_data
 
