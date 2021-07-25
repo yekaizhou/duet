@@ -2,6 +2,8 @@
 
 A Fast and Accurate Germline Variant Caller for the Calling and Haplotyping of Novel Structural Variations From Low-depth Oxford Nanopore Sequencing
 
+![](duet_graphical_abstract.png)
+
 ---
 ## Installation
 
