@@ -13,7 +13,7 @@ A Fast and Accurate Germline Variant Caller for the Calling and Haplotyping of N
 
     # install from github
     $ conda config --add channels bioconda && conda config --add channels conda-forge
-    $ conda create -n duet_env -c bioconda -c conda-forge svim=1.4.2 clair3=0.1.5 -y && conda activate duet_env
+    $ conda create -n duet_env -c bioconda -c conda-forge svim=1.4.2 clair3=0.1.5 bcftools=1.8 -y && conda activate duet_env
     $ git clone https://github.com/yekaizhou/duet.git && cd duet/src/duet
     $ python duet -h
 
