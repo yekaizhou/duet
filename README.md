@@ -32,6 +32,7 @@ Below is the graphical abstract of the overview of Duet.
     duet <ALN.bam>     # along with indexed .bai file in the same directory \
          <REF.fa>      # along with indexed .bai file in the same directory \
          <OUTPUT_DIR>  # working and output directory
+         [Optional Parameters]
 
 | Optional Parameter | Description | Default |
 | :------------ |:---------------|-------------:|
