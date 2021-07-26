@@ -1,6 +1,8 @@
 # Duet
 
-A Fast and Accurate Germline Variant Caller for the Calling and Haplotyping of Novel Structural Variations From Low-depth Oxford Nanopore Sequencing. (Below is the Graphical Abstract of Duet)
+Duet is used for the calling and haplotyping of novel structural variations from low-depth Oxford Nanopore sequencing. The algorithm employs the power of called SNPs from the same reads, to achieve high accuracy in SV genotyping and haplotyping, while maintains fast speed.
+
+Below is the graphical abstract of the overview of Duet.
 
 ![](duet_graphical_abstract.png)
 
@@ -38,12 +40,6 @@ A Fast and Accurate Germline Variant Caller for the Calling and Haplotyping of N
 |--cluster_max_distance, -c|maximum span-position distance between SV marks in a cluster to call a SV candidates|0.9|
 |--sv_min_size, -s|minimum SV size to be reported|50|
 |--min_support_read, -r|minimum number of reads that support a SV to be reported|2|
-
-
-
-
----
-## Changelog
 
 ---
 ## Contact
