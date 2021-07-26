@@ -1,3 +1,5 @@
+# coding=utf-8
+
 def init_chrom_list():
     chrom_list = []
     for i in range(1, 23):

@@ -1,3 +1,5 @@
+# coding=utf-8
+
 import logging
 import time
 from duet.write_file import print_sv_header, print_sv
