@@ -8,7 +8,7 @@ A Fast and Accurate Germline Variant Caller for the Calling and Haplotyping of N
 ## Installation
 
     # install via conda
-    $ conda create -n duet_env -c bioconda duet
+    $ conda create -n duet_env -c bioconda duet && conda activate duet_env
     $ duet -h
 
     # install from github
@@ -22,6 +22,7 @@ A Fast and Accurate Germline Variant Caller for the Calling and Haplotyping of N
 
 - [clair3](https://github.com/HKU-BAL/Clair3) = 0.1.5
 - [svim](https://github.com/eldariont/svim) = 1.4.2
+- [bcftools](https://anaconda.org/bioconda/bcftools) = 1.8
 
 ---
 ## Usage
