@@ -4,7 +4,7 @@ Duet is used for the calling and haplotyping of novel structural variations from
 
 Below is the graphical abstract of the overview of Duet.
 
-![](duet_graphical_abstract.png)
+![](docs/duet_graphical_abstract.png)
 
 ---
 ## Installation
