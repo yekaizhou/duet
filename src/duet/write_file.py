@@ -1,3 +1,5 @@
+# coding=utf-8
+
 from duet.read_file import init_chrom_list, read_file
 import logging
 
