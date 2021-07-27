@@ -7,7 +7,7 @@ with open('README.md') as f:
 
 setup(
     name = 'duet',
-    version = '0.1.1',
+    version = '0.2',
     description = 'Fast and Accurate Novel SV Calling and Haplotyping',
     author = 'Yekai Zhou',
     author_email = 'yekai.zhou@outlook.com',
