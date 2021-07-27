@@ -11,13 +11,15 @@ Below is the graphical abstract of the overview of Duet.
 
     # install via conda
     $ conda create -n duet_env -c bioconda duet && conda activate duet_env
-    $ duet -h
 
     # install from github
     $ conda config --add channels bioconda && conda config --add channels conda-forge
     $ conda create -n duet_env -c bioconda -c conda-forge svim=1.4.2 clair3=0.1.5 bcftools=1.8 -y && conda activate duet_env
-    $ git clone https://github.com/yekaizhou/duet.git && cd duet/src/duet
-    $ python duet -h
+    $ git clone https://github.com/yekaizhou/duet.git
+    $ cd duet && pip install .
+    
+    # then try to use duet
+    $ duet -h
 
 ---
 ## Dependencies
