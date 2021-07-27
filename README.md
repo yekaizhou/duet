@@ -18,7 +18,6 @@ Below is the graphical abstract of the overview of Duet.
     $ git clone https://github.com/yekaizhou/duet.git
     $ cd duet && pip install .
     
-    # then try to use duet
     $ duet -h
 
 ---
