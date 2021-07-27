@@ -16,7 +16,7 @@ setup(
     packages = find_packages(where = 'src'),
     package_dir = {'': 'src'},
     data_files = [('', ['LICENSE'])],
-    scripts=['src/duet/duet'],
+    scripts = ['src/duet/duet'],
     long_description = readme,
     long_description_content_type = 'text/markdown',
     zip_safe = False,
