@@ -1,8 +1,8 @@
 # Duet
 
-Duet is used for the calling and haplotyping of novel structural variations from low-depth Oxford Nanopore sequencing. The algorithm employs the power of called SNPs from the same reads, to achieve high accuracy in SV genotyping and haplotyping, while maintains fast speed.
+Duet is an algorithm for SNP-assisted SV calling and phasing from low-depth Oxford Nanopore sequencing. After SV and SNP calling of the input, the algorithm will select and extract marks from these variants, to calculate some newly-designed parameters (read weight) for each SV candidate. Haplotype characterization based on these novel signatures is tested to be highly fast and accurate.
 
-Below is the graphical abstract of the overview of Duet.
+Below is the graphical abstract of Duet.
 
 ![](docs/duet_graphical_abstract.png)
 
