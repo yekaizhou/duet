@@ -18,7 +18,7 @@ def set_logging(home):
 
 def parse_args(argv):
     parser = argparse.ArgumentParser(
-        description = 'SNP-Assisted SV Calling and Phasing from Low-depth ONT')
+        description = 'SNP-Assisted Phased SV Detection from Low-depth ONT')
     parser.add_argument('-t', '--thread', type = int, default = 40,
         help = 'number of threads to use [%(default)s]')
     parser.add_argument('-m', '--min_allele_frequency', type = float, default = 0.25,
