@@ -18,7 +18,7 @@ def set_logging(home):
 
 def parse_args(argv):
     parser = argparse.ArgumentParser(
-        description = 'Duet: a fast and accurate germline variant caller for structural variation calling and haplotyping from low-depth nanopore sequencing reads.')
+        description = 'Duet: a fast and accurate germline variant caller for novel SV calling and haplotyping from low-depth Oxford Nanopore sequencing.')
     parser.add_argument('-t', '--thread', type = int, default = 40,
         help = 'number of threads to use [%(default)s]')
     parser.add_argument('-m', '--min_allele_frequency', type = float, default = 0.25,
