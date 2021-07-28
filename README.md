@@ -44,5 +44,21 @@ Below is the graphical abstract of the overview of Duet.
 |--min_support_read, -r|minimum number of reads that support a SV to be reported|2|
 
 ---
+## Output
+   
+| Chromosome | Position | ID | Alteration | Length | Haplotype | Phase Set |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+|1|724801|Duet.1|INS|1963|1\|1|639244|
+|1|818028|Duet.2|DEL|-84|0\|1|639244|
+|1|965596|Duet.3|DEL|-84|1\|0|639244|
+|...|...|...|...|...|...|...|
+|16|88196792|Duet.6701|DEL|-131|1\|1|85189772|
+|16|88226790|Duet.6702|INS|117|1\|0|85189772|
+|...|...|...|...|...|...|...|
+    
+These SV phasing results will be arranged into phased_sv.vcf. Results from intermediate steps (SNP calling, SNP phasing, SV calling) will also be written to corresponding folders in the same working directory, for the reference and utilization of the users.
+
+---
 ## Contact
+
 For any problems or suggestions during the use of duet, please post on [Github Issue](https://github.com/yekaizhou/duet/issues) or contact yekai.zhou@outlook.com.
