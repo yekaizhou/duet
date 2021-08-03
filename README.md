@@ -1,5 +1,13 @@
 # Duet
 
+[![Anaconda-Server Badge](https://anaconda.org/bioconda/duet/badges/version.svg)](https://anaconda.org/bioconda/duet)
+[![Anaconda-Server Badge](https://anaconda.org/bioconda/duet/badges/license.svg)](https://anaconda.org/bioconda/duet)
+[![Anaconda-Server Badge](https://anaconda.org/bioconda/duet/badges/platforms.svg)](https://anaconda.org/bioconda/duet)
+[![Anaconda-Server Badge](https://anaconda.org/bioconda/duet/badges/latest_release_date.svg)](https://anaconda.org/bioconda/duet)
+
+---
+## Introduction
+
 Duet is an algorithm for SNP-assisted phased SV detection from low-depth Oxford Nanopore sequencing. After SV and SNP calling of the input, the algorithm will select and extract marks from these variants, to calculate some newly-designed parameters (read weight) for each SV candidate. Haplotype characterization based on these novel signatures is tested to be highly fast and accurate.
 
 Below is the graphical abstract of Duet.
