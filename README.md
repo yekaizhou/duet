@@ -8,7 +8,7 @@
 ---
 ### Introduction
 
-Duet is an algorithm for SNP-assisted phased SV detection from low-depth long-read sequencing. After SV and SNP calling of the input, the algorithm will select and extract marks from these variants, to calculate some newly-designed parameters (read weight) for each SV candidate. Haplotype characterization based on these novel signatures is tested to be highly fast and accurate.
+In clinical applications and population studies, an ideal structural variation (SV) identifier will detect their positions and characterize corresponding genotypes in high precision, conditioned on limited sequencing resources per sample. Available SV callers can recognize SV spots sensitively from low-depth long-reads, but the subsequent genotype characterization remains poorly developed. Here we present Duet, a tool for phased SV detection from low-depth long-reads. Duet integrates single-nucleotide polymorphisms (SNPs) information, as well as conventional SV genotyping and phasing logistics into a unified, comprehensive while interpretable framework, to achieve fast and accurate SV calling, genotyping, and phasing in one command. Benchmarks on long-read sequencing datasets from three samples demonstrate the above uniqueness and superiority of Duet.
 
 Below is the graphical abstract of Duet.
 
