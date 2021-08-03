@@ -8,7 +8,7 @@
 ---
 ## Introduction
 
-Duet is an algorithm for SNP-assisted phased SV detection from low-depth Oxford Nanopore sequencing. After SV and SNP calling of the input, the algorithm will select and extract marks from these variants, to calculate some newly-designed parameters (read weight) for each SV candidate. Haplotype characterization based on these novel signatures is tested to be highly fast and accurate.
+Duet is an algorithm for SNP-assisted phased SV detection from low-depth long-read sequencing. After SV and SNP calling of the input, the algorithm will select and extract marks from these variants, to calculate some newly-designed parameters (read weight) for each SV candidate. Haplotype characterization based on these novel signatures is tested to be highly fast and accurate.
 
 Below is the graphical abstract of Duet.
 
