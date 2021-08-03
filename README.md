@@ -1,4 +1,4 @@
-# Duet
+## Duet: SNP-Assisted Phased SV Detection from Low-depth Long-reads
 
 [![Anaconda-Server Badge](https://anaconda.org/bioconda/duet/badges/version.svg)](https://anaconda.org/bioconda/duet)
 [![Anaconda-Server Badge](https://anaconda.org/bioconda/duet/badges/license.svg)](https://anaconda.org/bioconda/duet)
@@ -6,7 +6,7 @@
 [![Anaconda-Server Badge](https://anaconda.org/bioconda/duet/badges/latest_release_date.svg)](https://anaconda.org/bioconda/duet)
 
 ---
-## Introduction
+### Introduction
 
 Duet is an algorithm for SNP-assisted phased SV detection from low-depth long-read sequencing. After SV and SNP calling of the input, the algorithm will select and extract marks from these variants, to calculate some newly-designed parameters (read weight) for each SV candidate. Haplotype characterization based on these novel signatures is tested to be highly fast and accurate.
 
@@ -15,7 +15,7 @@ Below is the graphical abstract of Duet.
 ![](docs/duet_graphical_abstract.png)
 
 ---
-## Installation
+### Installation
 
     # install via conda
     $ conda create -n duet -c bioconda duet -y && conda activate duet
@@ -29,14 +29,14 @@ Below is the graphical abstract of Duet.
     $ duet -h
 
 ---
-## Dependencies
+### Dependencies
 
 - [clair3](https://github.com/HKU-BAL/Clair3) = 0.1.5
 - [svim](https://github.com/eldariont/svim) = 1.4.2
 - [bcftools](https://anaconda.org/bioconda/bcftools) = 1.8
 
 ---
-## Usage
+### Usage
 
     duet <ALN.bam>     # along with indexed .bai file in the same directory \
          <REF.fa>      # along with indexed .bai file in the same directory \
@@ -52,7 +52,7 @@ Below is the graphical abstract of Duet.
 |--min_support_read, -r|minimum number of reads that support a SV to be reported|2|
 
 ---
-## Output
+### Output
    
 | Chromosome | Position | ID | Alteration | Length | Haplotype | Phase Set |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
@@ -67,6 +67,6 @@ Below is the graphical abstract of Duet.
 These SV phasing results will be arranged into phased_sv.vcf. Results from intermediate steps (SNP calling, SNP phasing, SV calling) will also be written to corresponding folders in the same working directory, for the reference and utilization of the users.
 
 ---
-## Contact
+### Contact
 
 For any problems or suggestions during the use of duet, please post on [Github Issue](https://github.com/yekaizhou/duet/issues) or contact yekai.zhou@outlook.com.
