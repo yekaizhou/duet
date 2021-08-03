@@ -64,7 +64,7 @@ Below is the graphical abstract of Duet.
 |16|88196792|Duet.6701|DEL|-131|1\|1|85189772|
 |...|...|...|...|...|...|...|
     
-These SV phasing results will be arranged into phased_sv.vcf. Results from intermediate steps (SNP calling, SNP phasing, SV calling) will also be written to corresponding folders in the same working directory, for the reference and utilization of the users.
+These SV phasing results will be arranged into `phased_sv.vcf`. Results from intermediate steps (SNP calling, SNP phasing, SV calling) will also be written to corresponding folders in the same working directory, for the reference and utilization of the users.
 
 ---
 ### Contact
