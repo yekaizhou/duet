@@ -10,8 +10,12 @@
 
 In clinical applications and population studies, an ideal structural variation (SV) identifier will detect their positions and characterize corresponding genotypes in high precision, conditioned on limited sequencing resources per sample. Available SV callers can recognize SV spots sensitively from low-depth long-reads, but the subsequent genotype characterization remains poorly developed. Here we present Duet, a tool for phased SV detection from low-depth long-reads. Employing single-nucleotide polymorphisms (SNPs) information, Duet integrates SV genotyping and phasing logistics into a unified, comprehensive while interpretable framework, to achieve fast and accurate SV calling, genotyping, and phasing in one command. Benchmarks on long-read sequencing datasets from three samples demonstrate the above uniqueness and superiority of Duet.
 
+---
+### Graphical Abstract
+
 ![](docs/graphical_abstract.png)
-_**Overview of Duet:** Step 1 to 6 is the workflow. Grey and black lines are sequencing alignments and reference sequences. Circles and squares represent SNPs and SVs. Squares with grey and black edges stand for initial SV marks and final SV calls. Different colors (brown and green) in dots and lines denote different haplotypes of the reads and the variants. Luminance of the color demonstrates the confidence of the haplotype prediction._
+
+Step 1 to 6 is the workflow. Grey and black lines are sequencing alignments and reference sequences. Circles and squares represent SNPs and SVs. Squares with grey and black edges stand for initial SV marks and final SV calls. Different colors (brown and green) in dots and lines denote different haplotypes of the reads and the variants. Luminance of the color demonstrates the confidence of the haplotype prediction.
 
 ---
 ### Installation
