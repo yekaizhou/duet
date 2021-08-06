@@ -4,6 +4,8 @@
 [![Anaconda-Server Badge](https://anaconda.org/bioconda/duet/badges/license.svg)](https://anaconda.org/bioconda/duet)
 [![Anaconda-Server Badge](https://anaconda.org/bioconda/duet/badges/platforms.svg)](https://anaconda.org/bioconda/duet)
 [![Anaconda-Server Badge](https://anaconda.org/bioconda/duet/badges/latest_release_date.svg)](https://anaconda.org/bioconda/duet)
+[![Anaconda-Server Badge](https://anaconda.org/bioconda/duet/badges/downloads.svg)](https://anaconda.org/bioconda/duet)
+[![Anaconda-Server Badge](https://anaconda.org/bioconda/duet/badges/installer/conda.svg)](https://anaconda.org/bioconda/duet)
 
 ---
 ### Introduction
