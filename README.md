@@ -61,13 +61,13 @@ Step 1 to 6 is the workflow. Grey and black lines are sequencing alignments and 
    
 | Chromosome | Position | ID | Alteration | Length | Haplotype | Phase Set |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-|1|724801|Duet.1|INS|1963|1\|1|639244|
-|1|818028|Duet.2|DEL|-84|0\|1|639244|
-|1|965596|Duet.3|DEL|-353|1\|0|639244|
-|...|...|...|...|...|...|...|
-|16|88087453|Duet.6700|INS|142|0\|1|85189772|
-|16|88196792|Duet.6701|DEL|-131|1\|1|85189772|
-|...|...|...|...|...|...|...|
+|1|724801|Duet.1|INS|1963|**1\|1**|639244|
+|1|818028|Duet.2|DEL|-84|**0\|1**|639244|
+|1|965596|Duet.3|DEL|-353|**1\|0**|639244|
+|...|...|...|...|...|**...**|...|
+|16|88087453|Duet.6700|INS|142|**0\|1**|85189772|
+|16|88196792|Duet.6701|DEL|-131|**1\|1**|85189772|
+|...|...|...|...|...|**...**|...|
     
 These SV phasing results will be arranged into `phased_sv.vcf`. Results from intermediate steps (SNP calling, SNP phasing, SV calling) will also be written to corresponding folders in the same working directory, for the reference and utilization of the users.
 
