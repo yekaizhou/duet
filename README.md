@@ -10,7 +10,7 @@
 ---
 ### Introduction
 
-In clinical applications and population studies, an ideal structural variation (SV) identifier will detect their positions and characterize corresponding genotypes in high precision, conditioned on limited sequencing resources per sample. Available SV callers can recognize SV spots sensitively from low-depth long-reads, but the subsequent genotype characterization remains poorly developed. Here we present Duet, a tool for phased SV detection from low-depth long-reads. Employing single-nucleotide polymorphisms (SNPs) information, Duet integrates SV genotyping and phasing logistics into a unified, comprehensive while interpretable framework, to achieve fast and accurate SV calling, genotyping, and phasing in one command. Benchmarks on long-read sequencing datasets from three samples demonstrate the above uniqueness and superiority of Duet.
+In clinical applications and population studies, an ideal structural variation (SV) identifier will detect SV positions and characterize corresponding haplotypes in high precision, relying on limited sequencing resources per sample. Available SV callers can recognize SV spots sensitively from low-depth long-reads, but the subsequent haplotype characterization remains underdeveloped. Here we present Duet, a tool for phased SV detection from low-depth long-reads. Duet abstracts signatures from both small and large variants into a unified, comprehensive while interpretable SV haplotype characterization framework, to achieve fast and accurate SV calling, genotyping, and phasing in one command. Benchmarks on long-read sequencing datasets from three samples demonstrate the above uniqueness and superiority.
 
 ---
 ### Graphical Abstract
