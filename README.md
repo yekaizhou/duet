@@ -15,9 +15,9 @@ In clinical applications and population studies, an ideal structural variation (
 ---
 ### Graphical Abstract
 
-![](docs/graphical_abstract_aut10.png)
+![](graphical_abstract.png)
 
-Step 1 to 6 is the workflow. Grey and black lines are sequencing alignments and reference sequences. Circles and squares represent SNPs and SVs. Squares with grey and black edges stand for initial SV marks and final SV calls. Different colors (brown and green) in dots and lines denote different haplotypes of the reads and the variants. Luminance of the color demonstrates the confidence of the haplotype prediction.
+Step (A) to (F) is the workflow, and (G) is corresponding performance. Grey and black lines are sequencing alignments and reference sequences. Circles and squares represent SNPs and SVs. Squares with grey and black edges stand for initial SV marks and final SV calls. Different colors (brown and green) in dots and lines denote different haplotypes of the reads and the variants (grey line means unphasable read). Luminance of the color demonstrates the confidence of the haplotype prediction. The abstracted SV haplotyping algorithm with example SV candidates and their prediction results in step (F) is demonstrated in Figure 3. Parameters in step (E) and (F) are illustrated in Table 1. The performance indicated in (G) is tested in the combined SV call set for three 8X ONT data sets from HG00733, HG001,and HG002 human samples. “T” and “T” with subscript are thresholds.
 
 ---
 ### Installation
