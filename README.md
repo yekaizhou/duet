@@ -15,7 +15,7 @@ In clinical applications and population studies, an ideal structural variation (
 ---
 ### Graphical Abstract
 
-![](docs/graphical_abstract.png)
+![](docs/graphical_abstract_aut10.png)
 
 Step 1 to 6 is the workflow. Grey and black lines are sequencing alignments and reference sequences. Circles and squares represent SNPs and SVs. Squares with grey and black edges stand for initial SV marks and final SV calls. Different colors (brown and green) in dots and lines denote different haplotypes of the reads and the variants. Luminance of the color demonstrates the confidence of the haplotype prediction.
 
