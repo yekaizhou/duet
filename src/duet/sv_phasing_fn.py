@@ -18,6 +18,8 @@ def read_hap_bam(path, thread):
             hap_bam_path = path + 'chr' + chrom_list[ch] + '.bam'
         elif os.path.exists(path + chrom_list[ch] + '.bam'):
             hap_bam_path = path + chrom_list[ch] + '.bam'
+        else:
+            continue
         alns = subprocess.check_output(shlex.split('samtools view -@' + str(thread) + ' ' + hap_bam_path)).decode('ascii').split('\n')[:-1]
         for s in alns:
             s = s.split()
