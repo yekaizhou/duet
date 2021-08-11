@@ -17,7 +17,7 @@ In clinical applications and population studies, an ideal structural variation (
 
 ![](graphical_abstract.png)
 
-A-F is the workflow, and G is corresponding performance. Grey and black lines are sequencing alignments and reference sequences. Circles and squares represent SNPs and SVs. Squares with grey and black edges stand for initial SV marks and final SV calls. Different colors (brown and green) in dots and lines denote different haplotypes of the reads and the variants (grey dots and lines means unphasable variants and reads). Luminance of the color demonstrates the confidence of the haplotype prediction. The performance indicated in G is tested in the combined SV call set for three 8X ONT data sets from HG00733, HG001,and HG002 human samples. “T” and “T” with subscript are thresholds.
+(A) - (F) is the workflow, and (G) is corresponding performance. Grey and black lines are sequencing alignments and reference sequences. Circles and squares represent SNPs and SVs. Squares with grey and black edges stand for initial SV marks and final SV calls. Different colors (brown and green) in dots and lines denote different haplotypes of the reads and the variants (grey dots and lines means unphasable variants and reads). Luminance of the color demonstrates the confidence of the haplotype prediction. The performance indicated in (G) is tested in the combined SV call set for three 8X ONT data sets from HG00733, HG001,and HG002 human samples. “T” and “T” with subscript are thresholds.
 
 ---
 ### Installation
@@ -81,9 +81,9 @@ mkdir duet_demo && cd duet_demo
 wget 'http://www.bio8.cs.hku.hk/duet_demo_data.tar.gz'
 tar -zxvf duet_demo_data.tar.gz && rm duet_demo_data.tar.gz
 duet duet_demo_data/HG00733_hg19_chr21.bam duet_demo_data/hg19_chr21.fa results
-```
 
-The resulting phased SV call set is in `results/phased_sv.vcf`.
+less results/phased_sv.vcf
+```
 
 ---
 ### Contact
