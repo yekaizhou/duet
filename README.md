@@ -80,8 +80,7 @@ This step demonstrates how to employ Duet to generate the phased SV call set of 
 - Step 2. Run
 
 ```bash
-mkdir duet_demo
-cd duet_demo
+mkdir duet_demo && cd duet_demo
 wget 'http://www.bio8.cs.hku.hk/duet_demo_data.tar.gz'
 tar -zxvf duet_demo_data.tar.gz && rm duet_demo_data.tar.gz
 duet duet_demo_data/HG00733_hg19_chr21.bam duet_demo_data/hg19_chr21.fa results
