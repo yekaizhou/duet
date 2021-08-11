@@ -86,7 +86,7 @@ tar -zxvf duet_demo_data.tar.gz && rm duet_demo_data.tar.gz
 duet duet_demo_data/HG00733_hg19_chr21.bam duet_demo_data/hg19_chr21.fa results
 ```
 
-- Step 3. Check the results using `less results/phased_sv.vcf`
+- Step 3. Check the result in `results/phased_sv.vcf`
 
 ---
 ### Contact
