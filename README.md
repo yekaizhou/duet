@@ -31,8 +31,6 @@ $ conda config --add channels bioconda && conda config --add channels conda-forg
 $ conda create -n duet -c bioconda svim=1.4.2 clair3=0.1.5 bcftools=1.8 -y && conda activate duet
 $ git clone https://github.com/yekaizhou/duet.git
 $ cd duet && pip install .
-
-$ duet -h
 ```
 
 ---
@@ -72,6 +70,24 @@ $ duet -h
 |...|...|...|...|...|**...**|...|
     
 These SV phasing results will be arranged into `phased_sv.vcf`. Results from intermediate steps (SNP calling, SNP phasing, SV calling) will also be written to corresponding folders in the same working directory, for the reference and utilization of the users.
+
+---
+### Quick demo
+
+This step demonstrates how to employ Duet to generate the phased SV call set of **chromosome 21** in the **HG00733** human sample aligning to the **hg19** reference genome.
+
+- Step 1. [Install Duet](#installation)
+- Step 2. Run
+
+```bash
+mkdir duet_demo
+cd duet_demo
+wget 'http://www.bio8.cs.hku.hk/duet_demo_data.tar.gz'
+tar -zxvf duet_demo_data.tar.gz && rm duet_demo_data.tar.gz
+duet duet_demo_data/HG00733_hg19_chr21.bam duet_demo_data/hg19_chr21.fa results
+```
+
+- Step 3. Check the results using `less results/phased_sv.vcf`
 
 ---
 ### Contact
