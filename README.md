@@ -74,10 +74,7 @@ These SV phasing results will be arranged into `phased_sv.vcf`. Results from int
 ---
 ### Quick demo
 
-This step demonstrates how to employ Duet to generate the phased SV call set of **chromosome 21** in the **HG00733** human sample aligning to the **hg19** reference genome.
-
-- Step 1. Install [Duet](#installation)
-- Step 2. Run
+After [installation](#installation), Duet can be used for phased SV detection. Here we demonstrate the utility of Duet using a lite example: **chromosome 21** in the **HG00733** human sample aligning to the **hg19** reference genome.
 
 ```bash
 mkdir duet_demo && cd duet_demo
@@ -86,7 +83,7 @@ tar -zxvf duet_demo_data.tar.gz && rm duet_demo_data.tar.gz
 duet duet_demo_data/HG00733_hg19_chr21.bam duet_demo_data/hg19_chr21.fa results
 ```
 
-- Step 3. Check the result in `results/phased_sv.vcf`
+The resulting phased SV call set is in `results/phased_sv.vcf`.
 
 ---
 ### Contact
