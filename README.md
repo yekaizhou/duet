@@ -1,4 +1,4 @@
-## Duet: SNP-Assisted Phased SV Detection from Low-depth Long-reads
+## Duet: SNP-Assisted SV Phasing from Low-depth Long-reads
 
 [![Anaconda-Server Badge](https://anaconda.org/bioconda/duet/badges/version.svg)](https://anaconda.org/bioconda/duet)
 [![Anaconda-Server Badge](https://anaconda.org/bioconda/duet/badges/license.svg)](https://anaconda.org/bioconda/duet)
@@ -10,7 +10,7 @@
 ---
 ### Introduction
 
-In clinical applications and population studies, an ideal structural variation (SV) identifier will detect SV positions and characterize corresponding haplotypes in high precision, relying on limited sequencing resources per sample. Available SV callers can recognize SV spots sensitively from low-depth long-reads, but the subsequent haplotype characterization remains underdeveloped. Here we present Duet, a tool for phased SV detection from low-depth long-reads. Duet abstracts signatures from both small and large variants into a unified, comprehensive while interpretable SV haplotype characterization framework, to achieve fast and accurate SV calling, genotyping, and phasing in one command. Benchmarks on long-read sequencing datasets from three samples demonstrate the above uniqueness and superiority.
+In clinical applications and population studies, an ideal structural variation (SV) identifier will detect SV positions and characterize corresponding haplotypes in high precision, relying on limited sequencing resources per sample. Available SV callers can recognize SV spots sensitively from low-depth long-reads, but the subsequent haplotype characterization remains underdeveloped. Here we present Duet, a tool for phased SV detection from low-depth long-reads. Duet abstracts signatures from both small and large variants into a unified, comprehensive while interpretable SV haplotype characterization framework, to achieve fast and accurate SV calling, genotyping, and phasing in one command.
 
 ---
 ### Graphical Abstract
