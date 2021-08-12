@@ -1,4 +1,4 @@
-## Duet: SNP-Assisted SV Phasing from Low-depth Long-reads
+## Duet: SNP-Assisted SV Phasing Using Low-depth Long-reads
 
 [![Anaconda-Server Badge](https://anaconda.org/bioconda/duet/badges/version.svg)](https://anaconda.org/bioconda/duet)
 [![Anaconda-Server Badge](https://anaconda.org/bioconda/duet/badges/license.svg)](https://anaconda.org/bioconda/duet)
