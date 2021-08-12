@@ -31,6 +31,8 @@ $ conda config --add channels bioconda && conda config --add channels conda-forg
 $ conda create -n duet -c bioconda svim=1.4.2 clair3=0.1.5 bcftools=1.8 -y && conda activate duet
 $ git clone https://github.com/yekaizhou/duet.git
 $ cd duet && pip install .
+
+$ duet -h
 ```
 
 ---
