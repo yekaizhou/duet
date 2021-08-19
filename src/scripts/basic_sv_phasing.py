@@ -8,12 +8,24 @@ import sys
 import numpy as np
 from operator import itemgetter
 from duet.utils import set_logging, parse_args, check_envs
-from duet.snp_calling import snp_calling
+# from duet.snp_calling import snp_calling
 from duet.snp_phasing import snp_phasing
 from duet.sv_calling import sv_calling
-from duet.sv_phasing import sv_phasing
+# from duet.sv_phasing import sv_phasing
 from duet.sv_phasing_fn import generate_callinfo, read_hap_bam
 from duet.read_file import init_chrom_list
+from duet.write_file import *
+
+def snp_calling(home, ref_path, aln_path, maf, thread):
+    lines = '*************************'
+    logging.info(lines + ' SNP CALLING STARTED ' + lines)
+    starttime = time.time()
+    snp_calling_home = home + '/snp_calling/'
+    os.system('mkdir ' + snp_calling_home)
+    os.system('run_clair3.sh -b ' + aln_path + ' -f ' + ref_path + \
+              ' -m "${CONDA_PREFIX}/bin/models/ont" -t ' + str(thread) + ' -p ont -o ' + snp_calling_home + \
+              ' --snp_min_af=' + str(maf) + ' --pileup_only --call_snp_only')
+    logging.info(lines + ' SNP CALLING COMPLETED IN ' + str(round(time.time() - starttime, 3)) + 's ' + lines)
 
 def get_phase_info(call, ps_sr = 2, ps_num = 1, oneps_set = ''):
     info = dict()
@@ -137,6 +149,19 @@ def predict_hp(call, ps_num, oneps_set):
         return pred, f['ps']
     else:
         return f['tothap'], f['ps']
+
+def sv_phasing(home, svlen_thres, suppread_thres, thread):
+    lines = '*************************'
+    logging.info(lines + ' SV PHASING STARTED ' + lines)
+    starttime = time.time()
+    sv_calling_path = home + '/sv_calling/variants.vcf'
+    sv_phasing_path = home + '/phased_sv.vcf'
+    snp_phasing_home = home + '/snp_phasing/'
+    logging.info('create output .vcf file')
+    print_sv_header(sv_calling_path, sv_phasing_path)
+    print_sv(generate_phased_callset(sv_calling_path, snp_phasing_home, svlen_thres, suppread_thres, thread), \
+             sv_phasing_path)
+    logging.info(lines + ' SV PHASING COMPLETED IN ' + str(round(time.time() - starttime, 3)) + 's ' + lines)
 
 def main(argv):
     args = parse_args(argv)
