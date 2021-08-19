@@ -5,12 +5,15 @@ import os
 import logging
 import time
 import sys
+import numpy as np
+from operator import itemgetter
 from duet.utils import set_logging, parse_args, check_envs
 from duet.snp_calling import snp_calling
 from duet.snp_phasing import snp_phasing
 from duet.sv_calling import sv_calling
 from duet.sv_phasing import sv_phasing
-from duet.sv_phasing_fn import *
+from duet.sv_phasing_fn import generate_callinfo, read_hap_bam
+from duet.read_file import init_chrom_list
 
 def get_phase_info(call, ps_sr = 2, ps_num = 1, oneps_set = ''):
     info = dict()
