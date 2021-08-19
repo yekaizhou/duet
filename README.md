@@ -46,7 +46,7 @@ $ duet -h
 ### Usage
 
     duet <ALN.bam>     # along with indexed .bai file in the same directory \
-         <REF.fa>      # along with indexed .bai file in the same directory \
+         <REF.fa>      # along with indexed .fai file in the same directory \
          <OUTPUT_DIR>  # working and output directory
          [Optional Parameters]
 
