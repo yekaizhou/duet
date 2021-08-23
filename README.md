@@ -90,4 +90,4 @@ less results/phased_sv.vcf
 ---
 ### Contact
 
-For any problems or suggestions during the use of duet, please post on [Github Issue](https://github.com/yekaizhou/duet/issues) or contact yekai.zhou@outlook.com.
+For any problems or suggestions regarding _Duet_, please post on [Github Issue](https://github.com/yekaizhou/mppi/issues) or send to yekai.zhou@outlook.com.
