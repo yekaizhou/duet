@@ -6,8 +6,6 @@
 [![Anaconda-Server Badge](https://anaconda.org/bioconda/duet/badges/latest_release_date.svg)](https://anaconda.org/bioconda/duet)
 [![Anaconda-Server Badge](https://anaconda.org/bioconda/duet/badges/downloads.svg)](https://anaconda.org/bioconda/duet)
 [![Anaconda-Server Badge](https://anaconda.org/bioconda/duet/badges/installer/conda.svg)](https://anaconda.org/bioconda/duet)
-[![Github All Releases](https://img.shields.io/github/downloads/yekaizhou/duet/total.svg)](https://github.com/yekaizhou/duet/releases/latest)
-
 
 ---
 ### Introduction
