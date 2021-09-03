@@ -1,3 +1,4 @@
+from os import read
 import sys
 import argparse
 import numpy as np
@@ -21,25 +22,65 @@ def read_file(vcf_path):
     raw = [s.split() for s in raw]
     return raw
 
-def parse_vcf(path, thread = 40):
-    # sv_set = subprocess.check_output(shlex.split('bcftools view -H --threads ' + str(thread) + ' ' + path)).decode('ascii').split('\n')[:-1]
-    sv_set = read_file(path)
+def parse_bed(path):
+    bed_raw = read_file(path)
+    chrom_list = init_chrom_list()
+    comp_range = [[] for ch in range(24)]
+    for ch in range(24):
+        bed_raw_ch = [s for s in bed_raw if s[0] == 'chr' + chrom_list[ch]]
+        for s in bed_raw_ch:
+            comp_range[ch].append(range(int(s[1]), int(s[2]) + 1))
+    return comp_range
+
+def parse_vcf(vcf_path, bed_path = ''):
+    if bed_path != '':
+        comp_range = parse_bed(bed_path)
+    chrom_list = init_chrom_list()
+    sv_set = read_file(vcf_path)
     sv_set = [s for s in sv_set if s[0][0] != '#']
-    # sv_set = [s.split() for s in sv_set]
     info = []
     for s in sv_set:
+        if s[0][3:] not in chrom_list:
+            continue
         info.append(dict())
         t = len(info) - 1
         info[t]['chr'] = s[0]
         info[t]['pos'] = int(s[1])
         info[t]['id'] = s[2] + s[0] + s[1]
         info[t]['hp'] = s[-1][:3]
-        info[t]['ps'] = s[0] + '_' + s[-1][4:] # baseinfo ps will be only chrN
+        if info[t]['hp'][0] == '.':
+            info[t]['hp'] = '0' + info[t]['hp'][1:]
+        if info[t]['hp'][2] == '.':
+            info[t]['hp'] = info[t]['hp'][:2] + '0'
+        if info[t]['hp'][1] == '/':
+            info[t]['hp'] = info[t]['hp'][0] + '|' + info[t]['hp'][2]
+            info[t]['ps'] = s[0]
+        else:
+            info[t]['ps'] = s[0] + '_' + s[-1][4:] # baseinfo ps will be only chrN_
         sv_info = s[7].split(';')
-        info[t]['type'] = s[4][1:-1] if s[4] in ['<INS>', '<DEL>', '<DUP:TANDEM>', '<DUP:INT>'] else [s for s in sv_info if 'SVTYPE' in s][0][7:]
-        if 'DUP' in info[t]['type']:
-            info[t]['type'] = 'INS'
-        info[t]['len'] = abs(int([s for s in sv_info if 'SVLEN' in s][0][6:]))
+        if 'SVLEN' in s[7]:
+            info[t]['len'] = abs(int([s for s in sv_info if 'SVLEN' in s][0][6:]))
+            info[t]['type'] = s[4][1:-1] if s[4] in ['<INS>', '<DEL>', '<DUP:TANDEM>', '<DUP:INT>'] else [s for s in sv_info if 'SVTYPE' in s][0][7:]
+            if 'DUP' in info[t]['type']:
+                info[t]['type'] = 'INS'
+        else:
+            l = len(s[3]) - len(s[4])
+            if l > 0:
+                info[t]['len'] = l
+                info[t]['type'] = 'DEL'
+            if l< 0:
+                info[t]['len'] = -l
+                info[t]['type'] = 'INS'
+        if bed_path == '':
+            flag = True
+        else:
+            flag = False
+            for bed_rg in comp_range[chrom_list.index(s[0][3:])]:
+                if int(s[1]) in bed_rg:
+                    flag = True
+                    break
+        if not flag or info[t]['len'] < 50 or info[t]['hp'] == '0|0':
+            info.pop()
     return info
 
 def evaluation(baseinfo, callinfo, threshold_tp_range, ratio):
@@ -114,16 +155,25 @@ def parse_args(argv):
             help = 'maximum distance comparison calls must be within from base call')
     parser.add_argument('-p', '--pctsim', type = float, default = 0,
             help = 'edit distance ratio between the REF/ALT haplotype sequences of base and comparison call')
+    parser.add_argument('-b', '--bed_file', type = str, 
+            help = 'optional .bed file to confine benchmark regions')
+    parser.add_argument('--skip_phasing', action = 'store_true',
+            help = 'only benchmark on SV calling and genotyping [%(default)s]')
     args = parser.parse_args()
     return args
 
 def main(argv):
     args = parse_args(argv)
-    avg_sv_num, p, r, f1, p_gt, r_gt, f1_gt, p_hp, r_hp, f1_hp = evaluation(parse_vcf(args.truthset), parse_vcf(args.callset), args.refdist, args.pctsim)
-    print('Average SV number per phase set is', avg_sv_num)
+    if not args.bed_file:
+        avg_sv_num, p, r, f1, p_gt, r_gt, f1_gt, p_hp, r_hp, f1_hp = evaluation(parse_vcf(args.truthset), parse_vcf(args.callset), args.refdist, args.pctsim)
+    else:
+        avg_sv_num, p, r, f1, p_gt, r_gt, f1_gt, p_hp, r_hp, f1_hp = evaluation(parse_vcf(args.truthset, args.bed_file), parse_vcf(args.callset, args.bed_file), args.refdist, args.pctsim)
+    if not args.skip_phasing:
+        print('Average SV number per phase set is', avg_sv_num)
     print('The precision, recall and F1 score of SV calling are', p, r, f1)
     print('The precision, recall and F1 score of SV genotyping are', p_gt, r_gt, f1_gt)
-    print('The precision, recall and F1 score of SV phasing are', p_hp, r_hp, f1_hp)
+    if not args.skip_phasing:
+        print('The precision, recall and F1 score of SV phasing are', p_hp, r_hp, f1_hp)
     
 if __name__ == '__main__':
     main(sys.argv[1:])
