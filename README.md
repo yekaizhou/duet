@@ -13,11 +13,18 @@
 In clinical applications, an ideal structural variation (SV) caller will detect SV spots and characterize corresponding haplotypes in high accuracy, relying on limited sequencing resources per sample. Available SV callers can detect SV spots accurately from low-depth long-reads, but the subsequent haplotype characterization remains underdeveloped. Here we present Duet, an algorithm employing the potentials from both small and large variants, for SV calling and phasing from low-depth long-reads. Comprehensive benchmarking against state-of-the-art SV callers and feasible SV phasing pipelines demonstrated the efficiency and accuracy of Duet.
 
 ---
-### Graphical Abstract
+### Overview
 
-![](docs/graphical_abstract.png)
+![](docs/overview.png)
 
 Step (A) to (F) is the workflow, and (G) is the corresponding performance of Duet. Grey and black lines are sequencing alignments and reference sequences. Circles and squares are SNPs and SVs. Squares with grey and black edges are initial SV marks and final SV calls. Different colors (brown and green) in dots and lines are different haplotypes of the reads and the variants (grey line means unphasable read). Luminance of the color represents the confidence of the haplotype prediction. The abstracted SV haplotyping algorithm with example SV candidates and their prediction results in step (F) is illustrated in Figure 4. Parameters in step (E) and (F) are demonstrated in Table 1. (G) is the average performance tested on three 8X ONT data sets from HG00733, HG001, and HG002 human samples. “T” and “T” with subscripts are thresholds.
+
+---
+### Benchmark
+
+![](docs/benchmark.png)
+
+Benchmark Duet against state-of-the-art SV callers and feasible SV phasing pipelines.
 
 ---
 ### Installation
