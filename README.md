@@ -17,7 +17,7 @@ In clinical applications, an ideal structural variation (SV) caller will detect 
 
 ![](docs/overview.png)
 
-Step (A) to (F) is the workflow, and (G) is the corresponding performance of Duet. Grey and black lines are sequencing alignments and reference sequences. Circles and squares are SNPs and SVs. Squares with grey and black edges are initial SV marks and final SV calls. Different colors (brown and green) in dots and lines are different haplotypes of the reads and the variants (grey line means unphasable read). Luminance of the color represents the confidence of the haplotype prediction. The abstracted SV haplotyping algorithm with example SV candidates and their prediction results in step (F) is illustrated in Figure 4. Parameters in step (E) and (F) are demonstrated in Table 1. (G) is the average performance tested on three 8X ONT data sets from HG00733, HG001, and HG002 human samples. “T” and “T” with subscripts are thresholds.
+Step (A) to (F) is the workflow, and (G) is the corresponding performance of Duet. Grey and black lines are sequencing alignments and reference sequences. Circles and squares are SNPs and SVs. Squares with grey and black edges are initial SV marks and final SV calls. Different colors (brown and green) in dots and lines are different haplotypes of the reads and the variants (grey line means unphasable read). Luminance of the color represents the confidence of the haplotype prediction. (G) is the average performance tested on three 8X ONT data sets from HG00733, HG001, and HG002 human samples. “T” and “T” with subscripts are thresholds.
 
 ---
 ### Benchmark
