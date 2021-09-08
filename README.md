@@ -10,21 +10,21 @@
 ---
 ### Introduction
 
-In clinical applications, an ideal structural variation (SV) caller will detect SV spots and characterize corresponding haplotypes in high accuracy, relying on limited sequencing resources per sample. Available SV callers can detect SV spots accurately from low-depth long-reads, but the subsequent haplotype characterization remains underdeveloped. Here we present Duet, an algorithm employing the potentials from both small and large variants, for SV calling and phasing from low-depth long-reads. Comprehensive benchmarking against state-of-the-art SV callers and feasible SV phasing pipelines demonstrated the efficiency and accuracy of Duet.
+Accurate calling and phasing of structural variations (SVs) are important to human genetics and medicine. However, available SV detectors have constraints in SV phasing. Here we present Duet, a long-read SV detector that can call and phase SVs using the potentials from both small and large variants. Duet is efficient and accurate even when using low-depth sequencing, benchmarked against available and feasible approaches.
 
 ---
 ### Overview
 
 ![](docs/overview.png)
 
-Step (A) to (F) is the workflow, and (G) is the corresponding performance of Duet. Grey and black lines are sequencing alignments and reference sequences. Circles and squares are SNPs and SVs. Squares with grey and black edges are initial SV marks and final SV calls. Different colors (brown and green) in dots and lines are different haplotypes of the reads and the variants (grey line means unphasable read). Luminance of the color represents the confidence of the haplotype prediction. (G) is the average performance tested on three 8X ONT data sets from HG00733, HG001, and HG002 human samples. “T” and “T” with subscripts are thresholds.
+Step (A) to (F) is the workflow, and (G) is the performance of Duet. Grey and black lines are sequencing alignments and reference sequences. Circles and squares are SNPs and SVs. Squares with grey and black edges are initial SV marks and final SV calls. Different colors (brown and green) in dots and lines are different haplotypes of the reads and the variants (grey line means unphasable read). The luminance of the color represents the confidence of the haplotype prediction. The abstracted SV haplotyping algorithm with example SV candidates and their prediction results in step (F) is illustrated in Figure 4. Parameters in steps (E, F) are demonstrated in Table 1. (G) is the average performance tested on three 8X ONT data sets from HG00733, HG001, and HG002 human samples. “T” and “T” with subscripts are thresholds.
 
 ---
 ### Benchmark
 
-![](docs/benchmark.png)
+![](docs/bench.png)
 
-Benchmark Duet against state-of-the-art SV callers and feasible SV phasing pipelines.
+Benchmark Duet against SV detectors and SV phasing pipelines. Rectangles with solid edges represent the average performance on 8X ONT of HG001, HG002, and HG00733 human samples. Rectangles with dotted edges represent performance on HG002 8X ONT restricted to CMRG genes. The highest performance for SV calling, genotyping, and phasing in each benchmark test will be marked an asterisk. 
 
 ---
 ### Installation
