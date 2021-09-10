@@ -83,7 +83,7 @@ These SV phasing results will be arranged into `phased_sv.vcf`. Results from int
 ---
 ### Quick demo
 
-After [installation](#installation), Duet can be used for phased SV detection. Here we demonstrate the utility of Duet using a lite example: **chromosome 21** in the **HG00733** human sample, aligning to the **hg19** reference genome.
+After [Installation](#installation), Duet can be used for phased SV detection. Here we demonstrate the utility of Duet using a lite example: **chromosome 21** in the **HG00733** human sample, aligning to the **hg19** reference genome.
 
 ```bash
 mkdir duet_demo && cd duet_demo
