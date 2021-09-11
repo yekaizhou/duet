@@ -1,4 +1,4 @@
-# make sure there are minimap2 and samtools etc in current environment
+# make sure there are minimap2, samtools, and bcftools etc in current environment
 
 # enter a folder for data download, storage and process
 mkdir duet_data && cd duet_data
@@ -13,9 +13,16 @@ wget http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/HGSVC2/release/v
 gunzip -d -k variants_freeze4_sv_insdel_sym.vcf.gz
 sed -i 's/\./PASS/2' variants_freeze4_sv_insdel_sym.vcf
 grep -v '_GL\|_KI\|chrM' variants_freeze4_sv_insdel_sym.vcf > variants_freeze4_sv_insdel_sym_mainChr.vcf
-bcftools view -p -c1 -Ov -s NA12878 -o NA12878_truthset.vcf variants_freeze4_sv_insdel_sym_mainChr.vcf
-bcftools view -p -c1 -Ov -s NA24385 -o NA24385_truthset.vcf variants_freeze4_sv_insdel_sym_mainChr.vcf
-bcftools view -p -c1 -Ov -s HG00733 -o HG00733_truthset.vcf variants_freeze4_sv_insdel_sym_mainChr.vcf
+bcftools view -p -c1 -Ov -s NA12878 -o NA12878_HGSVC2.vcf variants_freeze4_sv_insdel_sym_mainChr.vcf
+bcftools view -p -c1 -Ov -s NA24385 -o NA24385_HGSVC2.vcf variants_freeze4_sv_insdel_sym_mainChr.vcf
+bcftools view -p -c1 -Ov -s HG00733 -o HG00733_HGSVC2.vcf variants_freeze4_sv_insdel_sym_mainChr.vcf
+
+# download and process HG002 CMRG medically-relevant SV truth set
+wget https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/AshkenazimTrio/HG002_NA24385_son/CMRG_v1.00/GRCh38/StructuralVariant/HG002_GRCh38_CMRG_SV_v1.00.bed
+wget https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/AshkenazimTrio/HG002_NA24385_son/CMRG_v1.00/GRCh38/StructuralVariant/HG002_GRCh38_CMRG_SV_v1.00.vcf.gz
+gunzip HG002_GRCh38_CMRG_SV_v1.00.vcf.gz
+mv HG002_GRCh38_CMRG_SV_v1.00.vcf HG002_CMRG.vcf
+mv HG002_GRCh38_CMRG_SV_v1.00.bed HG002_CMRG.bed
 
 # download HG001, HG002, and HG00733 ONT reads called by Guppy4.2.2
 wget https://s3-us-west-2.amazonaws.com/human-pangenomics/NHGRI_UCSC_panel/HG001/nanopore/Guppy_4.2.2/HG001_NBT2018_Guppy_4.2.2.fastq.gz
@@ -40,5 +47,5 @@ samtools index -@40 HG00733_8X.bam
 
 # results in files for further utilization:
 #   Reference: hg38.no_alt.fa
-#   Truth SV callset: NA12878_truthset.vcf NA24385_truthset.vcf HG00733_truthset.vcf
+#   Truth SV callset: NA12878_HGSVC2.vcf NA24385_HGSVC2.vcf HG00733_HGSVC2.vcf HG002_CMRG.vcf HG002_CMRG.bed
 #   Alignment: NA12878_8X.bam NA24385_8X.bam HG00733_8X.bam
