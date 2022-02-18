@@ -1,4 +1,4 @@
-## Duet: SNP-Assisted SV Calling and Phasing Using Low-depth Long-reads
+## Duet: SNP-Assisted SV Calling, Genotyping, and Phasing Using Low-depth Oxford Nanopore Sequencing Data
 
 [![Anaconda-Server Badge](https://anaconda.org/bioconda/duet/badges/version.svg)](https://anaconda.org/bioconda/duet)
 [![Anaconda-Server Badge](https://anaconda.org/bioconda/duet/badges/license.svg)](https://anaconda.org/bioconda/duet)
@@ -10,21 +10,14 @@
 ---
 ### Introduction
 
-Accurate calling and phasing of structural variations (SVs) are important to human genetics and medicine. However, available SV detectors have constraints in SV phasing. Here we present Duet, a long-read SV detector that can call and phase SVs using the potentials from both small and large variants. Duet is efficient and accurate even when using low-depth sequencing, benchmarked against available and feasible approaches.
+Low-depth whole genome sequencing (WGS) using the long-read Oxford Nanopore Technologies (ONT) MinION sequencer provides a cost-effective option for highly sensitive and well-resolved structural variant (SV) detection, enabling practicable clinical applications for routine genetic screening. Despite the advantage of using long reads alignment, especially along repetitive genomic regions, precise (1) SV calling, (2) SV genotyping and (3) SV phasing using the existing workflows with low-coverage data is still challenging. Here we introduce Duet, an SV caller that utilizes 7 novel features derived from read-based SV and Single-nucleotide polymorphism (SNP) signatures to boost the performance of SV genotyping and phasing. The application requires minimal computational resources, and the decision path is interpretable. Precise SV genotyping and phasing also works as an effective filter to remove false positives from the SV caller to improve the overall precision. Duet was benchmarked with 8X ONT datasets of multiple standard reference samples, both genome wide and within the regions of the Complex Medically Relevant Genes (GIAB CMRG), and achieved the best F1-score in SV calling (77%), genotyping (68%), and phasing (59%) among state-of-the-art tools.
 
 ---
 ### Overview
 
 ![](docs/abstract.png)
 
-Step (A) to (F) is the workflow, and (G) is the performance of Duet. Grey and black lines are sequencing alignments and reference sequences. Circles and squares are SNPs and SVs. Squares with grey and black edges are initial SV marks and final SV calls. Different colors (brown and green) in dots and lines are different haplotypes of the reads and the variants (grey line means unphasable read). The luminance of the color represents the confidence of the haplotype prediction. The abstracted SV haplotyping algorithm with example SV candidates and their prediction results in step (F) is illustrated in Figure 4. Parameters in steps (E, F) are demonstrated in Table 1. (G) is the average performance tested on three 8X ONT data sets from HG00733, HG001, and HG002 human samples. “T” and “T” with subscripts are thresholds.
-
----
-### Benchmark
-
-![](docs/bench.png)
-
-Benchmark Duet against SV detectors and SV phasing pipelines. Rectangles with solid edges represent the average performance on 8X ONT of HG001, HG002, and HG00733 human samples. Rectangles with dotted edges represent performance on HG002 8X ONT restricted to CMRG genes. The highest performance for SV calling, genotyping, and phasing in each benchmark test will be marked an asterisk. 
+Steps (A) to (F) illustrate the workflow of Duet. (A) First, ONT long reads are aligned using Minimap2. (B-C) To obtain the per-read phasing information (green or brown) with its confidence level (luminance of the color), SNP (indicated in circles) calling is performed using Clair3 and phased using WhatsHap. (D-E) Seven novel features are extracted and integrated with SV marks (indicated in squares), detected using optimized SVIM. (F) The classification of SV genotype and haplotype is done using a rule-based decision tree, as shown in Table 1. (G) This shows the average performance tested on three 8X ONT data sets using HG00733, HG001, and HG002 human samples.
 
 ---
 ### Installation
