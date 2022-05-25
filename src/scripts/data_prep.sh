@@ -30,6 +30,13 @@ wget https://s3-us-west-2.amazonaws.com/human-pangenomics/NHGRI_UCSC_panel/HG001
 wget https://s3-us-west-2.amazonaws.com/human-pangenomics/NHGRI_UCSC_panel/HG002/nanopore/Guppy_4.2.2/HG002_GIAB_PromethION_Guppy_4.2.2_prom.fastq.gz
 wget https://s3-us-west-2.amazonaws.com/human-pangenomics/NHGRI_UCSC_panel/HG00733/nanopore/Guppy_4.2.2/HG00733_1_Guppy_4.2.2_prom.fastq.gz
 
+# full depth version
+wget https://s3-us-west-2.amazonaws.com/human-pangenomics/NHGRI_UCSC_panel/HG001/nanopore/Guppy_4.2.2/HG001_Circulomics_Guppy_4.2.2.fastq.gz
+wget https://s3-us-west-2.amazonaws.com/human-pangenomics/NHGRI_UCSC_panel/HG002/nanopore/Guppy_4.2.2/HG002_GIAB_MinION_GridION_Guppy_4.2.2.fastq.gz
+wget https://s3-us-west-2.amazonaws.com/human-pangenomics/NHGRI_UCSC_panel/HG002/nanopore/Guppy_4.2.2/HG002_GIAB_PromethION_Guppy_4.2.2_prom.fastq.gz
+wget https://s3-us-west-2.amazonaws.com/human-pangenomics/NHGRI_UCSC_panel/HG00733/nanopore/Guppy_4.2.2/HG00733_2_Guppy_4.2.2_prom.fastq.gz
+wget https://s3-us-west-2.amazonaws.com/human-pangenomics/NHGRI_UCSC_panel/HG00733/nanopore/Guppy_4.2.2/HG00733_3_Guppy_4.2.2_prom.fastq.gz
+
 minimap2 -ax map-ont hg38.no_alt.fa HG001_NBT2018_Guppy_4.2.2.fastq.gz -t 40 -o HG001_NBT2018_Guppy_4.2.2.sam
 minimap2 -ax map-ont hg38.no_alt.fa HG002_GIAB_PromethION_Guppy_4.2.2_prom.fastq.gz -t 40 -o HG002_GIAB_PromethION_Guppy_4.2.2_prom.sam
 minimap2 -ax map-ont hg38.no_alt.fa HG00733_1_Guppy_4.2.2_prom.fastq.gz -t 40 -o HG00733_1_Guppy_4.2.2_prom.sam
