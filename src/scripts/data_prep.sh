@@ -58,8 +58,9 @@ minimap2 -ax map-ont hg38.no_alt.fa HG001_Circulomics_Guppy_4.2.2.fastq.gz -t 40
 minimap2 -ax map-ont hg38.no_alt.fa HG002_GIAB_* -t 60 -o HG002.sam
 minimap2 -ax map-ont hg38.no_alt.fa HG00733_1_Guppy_4.2.2_prom.fastq.gz HG00733_2_Guppy_4.2.2_prom.fastq.gz -t 40 -o HG00733.sam
 
-
-
+samtools view -buS -@40 HG001.sam | samtools sort -@40 -O bam -T ./ - > HG001.bam
+samtools view -buS -@40 HG002.sam | samtools sort -@40 -O bam -T ./ - > HG002.bam
+samtools view -buS -@40 HG00733.sam | samtools sort -@40 -O bam -T ./ - > HG00733.bam
 
 
 # results in files for further utilization:
