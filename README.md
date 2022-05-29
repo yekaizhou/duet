@@ -26,7 +26,7 @@ Steps (A) to (F) illustrate the workflow of Duet. (A) First, ONT long reads are 
 # install via conda
 $ conda create -n duet -c bioconda duet -y && conda activate duet
 
-# install from github
+# or you can install from github
 $ conda config --add channels bioconda && conda config --add channels conda-forge
 $ conda create -n duet -c bioconda svim=1.4.2 clair3=0.1.5 bcftools=1.8 -y && conda activate duet
 $ git clone https://github.com/yekaizhou/duet.git
