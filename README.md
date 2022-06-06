@@ -17,7 +17,7 @@ Low-depth whole genome sequencing (WGS) using the long-read Oxford Nanopore Tech
 
 ![](docs/overview.png)
 
-Steps (A) to (F) illustrate the workflow of Duet. (A) First, ONT long reads are aligned using Minimap2. (B-C) To obtain the per-read phasing information (green or brown) with its confidence level (luminance of the color), SNP (indicated in circles) calling is performed using Clair3 and phased using WhatsHap. (D-E) Seven novel features are extracted and integrated with SV marks (indicated in squares), detected using optimized SVIM. (F) The classification of SV genotype and haplotype is done using a rule-based decision tree.
+(A) First, ONT long reads are aligned using Minimap2. (B-C) To obtain the per-read phasing information (green or brown) with its confidence level (luminance of the color), SNP (indicated in circles) calling is performed using Clair3 and phased using WhatsHap. (D-E) Seven novel features are extracted and integrated with SV marks (indicated in squares), detected using optimized SVIM. (F) The classification of SV genotype and haplotype is done using a rule-based decision tree.
 
 ---
 ### Installation
