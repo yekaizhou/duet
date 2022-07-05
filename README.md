@@ -17,7 +17,7 @@ Whole genome sequencing (WGS) using the long-read Oxford Nanopore Technologies (
 
 ![](docs/overview.png)
 
-(A) First, ONT long reads are aligned using Minimap2. (B-C) To obtain the per-read phasing information (green or brown) with its confidence level (luminance of the color), SNP (indicated in circles) calling is performed using Clair3 and phased using WhatsHap. (D-E) Seven novel features are extracted and integrated with SV marks (indicated in squares), detected using optimized SVIM. (F) The classification of SV genotype and haplotype is done using a rule-based decision tree.
+(A) First, ONT long reads are aligned using Minimap2. (B-C) To obtain the per-read phasing information (green or brown) with its confidence level (luminance of the color), SNPs (indicated in circles) are called using Clair3 and then phased using WhatsHap. Based on the phased SNPs, the haplotypes of the reads are determined by WhatsHap. (D) The SV marks on each read are detected by SVIM. (E) Three signatures from previous steps are integrated as the signature of the support reads. (F) Duet phases SV and filters out false signals based on the features derived from the signatures in step (E).
 
 ---
 ### Installation
