@@ -32,7 +32,7 @@ def parse_bed(path):
             comp_range[ch].append(range(int(s[1]), int(s[2]) + 1))
     return comp_range
 
-def parse_vcf(vcf_path, bed_path = ''):
+def parse_vcf(vcf_path, skip_phasing, bed_path = ''):
     if bed_path != '':
         comp_range = parse_bed(bed_path)
     chrom_list = init_chrom_list()
@@ -42,24 +42,37 @@ def parse_vcf(vcf_path, bed_path = ''):
     for s in sv_set:
         if s[0][3:] not in chrom_list:
             continue
+        if 'SVLEN=.' in s[7]:
+            continue
+        if 'INS' not in s[7] and 'DEL' not in s[7] and 'DUP' not in s[7] and 'INS' not in s[4] and 'DEL' not in s[4] and 'DUP' not in s[4]:
+            continue
         info.append(dict())
         t = len(info) - 1
         info[t]['chr'] = s[0]
         info[t]['pos'] = int(s[1])
         info[t]['id'] = s[2] + s[0] + s[1]
         info[t]['hp'] = s[-1][:3]
+        #if t == 0:
+        #    info[t]['ps'] = s[0]
         if info[t]['hp'][0] == '.':
             info[t]['hp'] = '0' + info[t]['hp'][1:]
         if info[t]['hp'][2] == '.':
             info[t]['hp'] = info[t]['hp'][:2] + '0'
         if info[t]['hp'][1] == '/':
+            if not skip_phasing:
+                if info[t]['hp'] == '1/1':
+                    info[t]['ps'] = s[0] + '_' + s[-1][s[-1].rfind(':'):]
+                    #info[t]['ps'] = info[t - 1]['ps']
+                else:
+                    info.pop()
+                    continue
             info[t]['hp'] = info[t]['hp'][0] + '|' + info[t]['hp'][2]
             info[t]['ps'] = s[0]
         else:
-            info[t]['ps'] = s[0] + '_' + s[-1][4:] # baseinfo ps will be only chrN_
+            info[t]['ps'] = s[0] + '_' + s[-1][s[-1].rfind(':'):] # baseinfo ps will be only chrN_
         sv_info = s[7].split(';')
         if 'SVLEN' in s[7]:
-            info[t]['len'] = abs(int([s for s in sv_info if 'SVLEN' in s][0][6:]))
+            info[t]['len'] = abs(int([s for s in sv_info if 'SVLEN' in s][0][6:])) if 'SVLEN=>' not in s[7] else abs(int([s for s in sv_info if 'SVLEN' in s][0][7:]))
             info[t]['type'] = s[4][1:-1] if s[4] in ['<INS>', '<DEL>', '<DUP:TANDEM>', '<DUP:INT>'] else [s for s in sv_info if 'SVTYPE' in s][0][7:]
             if 'DUP' in info[t]['type']:
                 info[t]['type'] = 'INS'
@@ -68,7 +81,7 @@ def parse_vcf(vcf_path, bed_path = ''):
             if l > 0:
                 info[t]['len'] = l
                 info[t]['type'] = 'DEL'
-            if l< 0:
+            if l < 0:
                 info[t]['len'] = -l
                 info[t]['type'] = 'INS'
         if bed_path == '':
@@ -111,7 +124,7 @@ def evaluation(baseinfo, callinfo, threshold_tp_range, ratio):
                     else:
                         base_idx = idx_list[call_idx]
                     if abs(call[call_idx]['pos'] - base[base_idx]['pos']) <= threshold_tp_range and \
-                       (call[call_idx]['len'] / base[base_idx]['len'] >= ratio or base[base_idx]['len'] / call[call_idx]['len'] >= ratio):
+                       (min(call[call_idx]['len'], base[base_idx]['len']) / max(base[base_idx]['len'], call[call_idx]['len']) >= ratio):
                         call_tp.add(call[call_idx]['id'])
                         base_tp.add(base[base_idx]['id'])
                         if call[call_idx]['hp'] in ['1|0', '0|1'] and base[base_idx]['hp'] in ['1|0', '0|1'] or \
@@ -165,9 +178,9 @@ def parse_args(argv):
 def main(argv):
     args = parse_args(argv)
     if not args.bed_file:
-        avg_sv_num, p, r, f1, p_gt, r_gt, f1_gt, p_hp, r_hp, f1_hp = evaluation(parse_vcf(args.truthset), parse_vcf(args.callset), args.refdist, args.pctsim)
+        avg_sv_num, p, r, f1, p_gt, r_gt, f1_gt, p_hp, r_hp, f1_hp = evaluation(parse_vcf(args.truthset, args.skip_phasing, ''), parse_vcf(args.callset, args.skip_phasing, ''), args.refdist, args.pctsim)
     else:
-        avg_sv_num, p, r, f1, p_gt, r_gt, f1_gt, p_hp, r_hp, f1_hp = evaluation(parse_vcf(args.truthset, args.bed_file), parse_vcf(args.callset, args.bed_file), args.refdist, args.pctsim)
+        avg_sv_num, p, r, f1, p_gt, r_gt, f1_gt, p_hp, r_hp, f1_hp = evaluation(parse_vcf(args.truthset, args.skip_phasing, args.bed_file), parse_vcf(args.callset, args.skip_phasing, args.bed_file), args.refdist, args.pctsim)
     if not args.skip_phasing:
         print('Average SV number per phase set is', avg_sv_num)
     print('The precision, recall and F1 score of SV calling are', p, r, f1)
