@@ -1,4 +1,4 @@
-## Duet: SNP-Assisted SV Calling, Genotyping, and Phasing Using Low-depth Oxford Nanopore Sequencing Data
+## Duet: SNP-Assisted Structural Variant Calling and Phasing Using Oxford Nanopore Sequencing
 
 [![Anaconda-Server Badge](https://anaconda.org/bioconda/duet/badges/version.svg)](https://anaconda.org/bioconda/duet)
 [![Anaconda-Server Badge](https://anaconda.org/bioconda/duet/badges/license.svg)](https://anaconda.org/bioconda/duet)
@@ -10,7 +10,7 @@
 ---
 ### Introduction
 
-Low-depth whole genome sequencing (WGS) using the long-read Oxford Nanopore Technologies (ONT) MinION sequencer provides a cost-effective option for highly sensitive and well-resolved structural variant (SV) detection, enabling practicable clinical applications for routine genetic screening. Despite the advantage of using long reads alignment, especially along repetitive genomic regions, precise (1) SV calling, (2) SV genotyping and (3) SV phasing using the existing workflows with low-coverage data is still challenging. Here we introduce Duet, an SV caller that utilizes 7 novel features derived from read-based SV and Single-nucleotide polymorphism (SNP) signatures to boost the performance of SV genotyping and phasing. The application requires minimal computational resources, and the decision path is interpretable. Precise SV genotyping and phasing also works as an effective filter to remove false positives from the SV caller to improve the overall precision. 
+Whole genome sequencing (WGS) using the long-read Oxford Nanopore Technologies (ONT) MinION sequencer provides a cost-effective option for structural variant (SV) detection in clinical applications. Despite the advantage of using long reads, however, accurate SV calling and phasing are still challenging. We introduce Duet, an SV detection tool optimized for SV calling and phasing using ONT data. The tool uses novel features integrated from both SV signatures and single-nucleotide polymorphism (SNP) signatures, which can accurately distinguish SV haplotype from a false signal. Duet can perform accurate SV calling, SV genotyping and SV phasing using low-coverage ONT data. It has great performance when scaled to high-coverage genomes, which is adaptable to various clinical applications.
 
 ---
 ### Overview
