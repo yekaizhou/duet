@@ -10,7 +10,7 @@
 ---
 ### Introduction
 
-Whole genome sequencing (WGS) using the long-read Oxford Nanopore Technologies (ONT) MinION sequencer provides a cost-effective option for structural variant (SV) detection in clinical applications. Despite the advantage of using long reads, however, accurate SV calling and phasing are still challenging. We introduce Duet, an SV detection tool optimized for SV calling and phasing using ONT data. The tool uses novel features integrated from both SV signatures and single-nucleotide polymorphism (SNP) signatures, which can accurately distinguish SV haplotype from a false signal. Duet can perform accurate SV calling, SV genotyping and SV phasing using low-coverage ONT data. It has great performance when scaled to high-coverage genomes, which is adaptable to various clinical applications.
+Whole genome sequencing (WGS) using the long-read Oxford Nanopore Technologies (ONT) MinION sequencer provides a cost-effective option for structural variant (SV) detection in clinical applications. Despite the advantage of using long reads, however, accurate SV calling and phasing are still challenging. We introduce Duet, an SV detection tool optimized for SV calling and phasing using ONT data. The tool uses novel features integrated from both SV signatures and single-nucleotide polymorphism (SNP) signatures, which can accurately distinguish SV haplotype from a false signal. Duet can perform accurate SV calling, SV genotyping and SV phasing using low-coverage ONT data. It has great scaling performance when sequencing coverage is higher and is adaptable to various clinical applications.
 
 ---
 ### Overview
