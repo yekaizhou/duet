@@ -1,6 +1,6 @@
 # coding=utf-8
 
-from read_file import init_chrom_list, read_file
+from duet.read_file import init_chrom_list, read_file
 import logging
 
 def print_sv(phased_callset, output_path):

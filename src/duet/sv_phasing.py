@@ -2,8 +2,8 @@
 
 import logging
 import time
-from write_file import print_sv_header, print_sv
-from sv_phasing_fn import generate_phased_callset
+from duet.write_file import print_sv_header, print_sv
+from duet.sv_phasing_fn import generate_phased_callset
 
 def sv_phasing(home, svlen_thres, suppread_thres, thread, include_all_ctgs):
     lines = '*************************'

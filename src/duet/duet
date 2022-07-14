@@ -5,11 +5,11 @@ import os
 import logging
 import time
 import sys
-from utils import set_logging, parse_args, check_envs
-from snp_calling import snp_calling
-from snp_phasing import snp_phasing
-from sv_calling import sv_calling
-from sv_phasing import sv_phasing
+from duet.utils import set_logging, parse_args, check_envs
+from duet.snp_calling import snp_calling
+from duet.snp_phasing import snp_phasing
+from duet.sv_calling import sv_calling
+from duet.sv_phasing import sv_phasing
 
 def main(argv):
     args = parse_args(argv)

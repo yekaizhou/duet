@@ -6,7 +6,7 @@ import shlex
 import subprocess
 import numpy as np
 from operator import itemgetter
-from read_file import init_chrom_list, parse_vcf
+from duet.read_file import init_chrom_list, parse_vcf
 
 def read_hap_bam(path, thread, include_all_ctgs):
     logging.info('extract SNP signatures')
