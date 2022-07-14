@@ -38,7 +38,7 @@ $ duet -h
 ---
 ### Dependencies
 
-- [clair3](https://github.com/HKU-BAL/Clair3) = 0.1.5
+- [clair3](https://github.com/HKU-BAL/Clair3) = 0.1.11
 - [svim](https://github.com/eldariont/svim) = 1.4.2
 - [bcftools](https://anaconda.org/bioconda/bcftools) = 1.8
 
@@ -52,11 +52,12 @@ $ duet -h
 
 | Optional Parameter | Description | Default |
 | :------------ |:---------------|-------------:|
-|--threads, -t|number of threads to use|40|
+|--threads, -t|number of threads to use|4|
 |--min_allele_frequency, -m|minimum allele frequency required to call a candidate SNP|0.25|
 |--cluster_max_distance, -c|maximum span-position distance between SV marks in a cluster to call a SV candidates|0.9|
 |--sv_min_size, -s|minimum SV size to be reported|50|
 |--min_support_read, -r|minimum number of reads that support a SV to be reported|2|
+|--include_all_ctgs|call variants on all contigs, otherwise chr{1..22,X,Y}|false|
 
 ---
 ### Output
