@@ -7,8 +7,8 @@ with open('README.md') as f:
 
 setup(
     name = 'duet',
-    version = '0.3',
-    description = 'SNP-Assisted Phased SV Detection from Low-depth Long-reads',
+    version = '0.4',
+    description = 'SNP-Assisted Structural Variant Calling and Phasing Using Oxford Nanopore Sequencing',
     author = 'Yekai Zhou',
     author_email = 'yekai.zhou@outlook.com',
     url = 'https://github.com/yekaizhou/duet',

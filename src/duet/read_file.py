@@ -1,11 +1,18 @@
 # coding=utf-8
 
-def init_chrom_list():
-    chrom_list = []
-    for i in range(1, 23):
-        chrom_list.append(str(i))
-    chrom_list.append('X')
-    chrom_list.append('Y')
+import subprocess
+import shlex
+
+def init_chrom_list(include_all_ctgs, home):
+    if not include_all_ctgs:
+        chrom_list = []
+        for i in range(1, 23):
+            chrom_list.append(str(i))
+        chrom_list.append('X')
+        chrom_list.append('Y')
+    else:
+        pileup_vcf_path = home + '/snp_calling/pileup.vcf.gz'
+        chrom_list = subprocess.check_output(shlex.split('tabix --list-chroms ' + pileup_vcf_path)).decode('ascii').split('\n')[:-1]
     return(chrom_list)
 
 def read_file(vcf_path):
@@ -15,11 +22,11 @@ def read_file(vcf_path):
     raw = [s.split() for s in raw]
     return raw
 
-def parse_vcf(vcf_file, support_reads_file = ''):
-    chrom_list = init_chrom_list()
+def parse_vcf(vcf_file, include_all_ctgs):
+    chrom_list = init_chrom_list(include_all_ctgs, vcf_file[:len(vcf_file) - 24]) # home + '/sv_calling/variants.vcf'
     callset = read_file(vcf_file)
-    call = [[] for ch in range(24)]
-    for ch in range(24):
+    call = [[] for ch in range(len(chrom_list))]
+    for ch in range(len(chrom_list)):
         call[ch] = [s for s in callset if s[0] in ['chr' + chrom_list[ch], chrom_list[ch]]]
         if call[ch] == []:
             continue
@@ -46,16 +53,6 @@ def parse_vcf(vcf_file, support_reads_file = ''):
             else:
                 rname = [s[0][6:].split(',') for s in rname]
                 call[ch] = [call[ch][i] + [rname[i]] for i in range(len(call[ch]))]
-        if support_reads_file != '':
-            raw_rname = read_file(support_reads_file)
-            raw_rname = raw_rname[1:]
-            nanovar_sv2read = dict()
-            for s in raw_rname:
-                nanovar_sv2read[s[0]] = {}
-                tmp_reads = [s2[:s2.find('~')] for s2 in s[1].split(',') if len(s2) > 5]
-                tmp_reads = list(dict.fromkeys(tmp_reads))
-                nanovar_sv2read[s[0]] = tmp_reads
-            call[ch] = [call[ch][i] + [nanovar_sv2read[call[ch][i][2]]] for i in range(len(call[ch]))]
         gtinfo = [s[9].split(':') for s in call[ch]]
         if len(gtinfo[0]) > 4: # gt ref var
             call[ch] = [call[ch][i] + [gtinfo[i][0]] for i in range(len(call[ch]))]

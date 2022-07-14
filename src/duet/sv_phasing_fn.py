@@ -6,13 +6,15 @@ import shlex
 import subprocess
 import numpy as np
 from operator import itemgetter
-from duet.read_file import init_chrom_list, parse_vcf
+from read_file import init_chrom_list, parse_vcf
 
-def read_hap_bam(path, thread):
-    logging.info('extract read weight information from haplotagged alignments')
-    read_hap = [[] for ch in range(24)]
-    chrom_list = init_chrom_list()
-    for ch in range(24):
+def read_hap_bam(path, thread, include_all_ctgs):
+    logging.info('extract SNP signatures')
+    chrom_list = init_chrom_list(include_all_ctgs, path[:len(path) - 13])
+    
+    read_hap = [[] for ch in range(len(chrom_list))]
+    
+    for ch in range(len(chrom_list)):
         read_hap[ch] = dict()
         if os.path.exists(path + 'chr' + chrom_list[ch] + '.bam'):
             hap_bam_path = path + 'chr' + chrom_list[ch] + '.bam'
@@ -25,17 +27,27 @@ def read_hap_bam(path, thread):
             s = s.split()
             if 'PC:i:' in s[-2]:
                 read_hap[ch][s[0]] = {'hap': int(s[-3][5:]), 'ps': int(s[-1][5:]), 'pc': int(s[-2][5:])}
+        if alns:
+            logging.info('  signatures extracted from ' + chrom_list[ch])
+        else:
+            logging.info('  no signature from ' + chrom_list[ch])
     return read_hap
 
-def generate_callinfo(caller_path, read_hap):
-    logging.info('extract read weight information from structural variation signatures')
-    comp_call = parse_vcf(caller_path)
-    for ch in range(24):
+def generate_callinfo(caller_path, read_hap, include_all_ctgs):
+    logging.info('extract SV signatures')
+    comp_call = parse_vcf(caller_path, include_all_ctgs)
+    chrom_list = init_chrom_list(include_all_ctgs, caller_path[:len(caller_path) - 24])
+    
+    for ch in range(len(chrom_list)):
+        if comp_call[ch]:
+            logging.info('  signatures extracted from ' + chrom_list[ch])
+        else:
+            logging.info('  no signature from ' + chrom_list[ch])
         for call in comp_call[ch]:
             call[13] = [[s, read_hap[ch][s]['hap'], read_hap[ch][s]['ps'], read_hap[ch][s]['pc']] \
                         if s in read_hap[ch] else [s] for s in call[13]]
     callset = []
-    for ch in range(24):
+    for ch in range(len(chrom_list)):
         for c in range(len(comp_call[ch])):
             callset.append(dict())
             t = len(callset) - 1
@@ -168,19 +180,19 @@ def predict_hp(call, ps_num, oneps_set):
                 pred = 3
     return pred, f['ps']
 
-def generate_phased_callset(vcf_path, sam_home, svlen_thres, suppread_thres, thread):
-    callstat = generate_callinfo(vcf_path, read_hap_bam(sam_home, thread))
+def generate_phased_callset(vcf_path, sam_home, svlen_thres, suppread_thres, thread, include_all_ctgs):
+    callstat = generate_callinfo(vcf_path, read_hap_bam(sam_home, thread, include_all_ctgs), include_all_ctgs) # sam_home = home + '/snp_phasing/' -13
     logging.info('integrate read weight information')
-    chrom_list = init_chrom_list()
+    chrom_list = init_chrom_list(include_all_ctgs, vcf_path[:len(vcf_path) - 24])
     callset = [c for c in callstat if c['svlen'] >= svlen_thres and \
                c['svread'] >= suppread_thres and c['callgt'] not in ['./.']]
     callset_dict = dict()
     callset_dict[1] = [c for c in callset if len(set([s[2] for s in c['svreadinfo'] if len(s) > 1])) == 1]
     callset_dict[2] = [c for c in callset if len(set([s[2] for s in c['svreadinfo'] if len(s) > 1])) > 1]
     callset_dict[0] = [c for c in callset if len(set([s[2] for s in c['svreadinfo'] if len(s) > 1])) == 0]
-    oneps_set = [set() for ch in range(24)]
+    oneps_set = [set() for ch in range(len(chrom_list))]
     logging.info('calculate read weight statistics')
-    for ch in range(24):
+    for ch in range(len(chrom_list)):
         callset_ch = [c for c in callset_dict[1] if c['chrom'] in ['chr' + chrom_list[ch], chrom_list[ch]]]
         for c in callset_ch:
             for read in c['svreadinfo']:
@@ -189,9 +201,11 @@ def generate_phased_callset(vcf_path, sam_home, svlen_thres, suppread_thres, thr
                     break
     phased_callset = []
     logging.info('predict SV haplotypes in the callset')
-    for ch in range(24):
+    for ch in range(len(chrom_list)):
         for ps_num in range(3):
             callset_ch = [c for c in callset_dict[ps_num] if c['chrom'] in ['chr' + chrom_list[ch], chrom_list[ch]]]
+            if not oneps_set[ch]:
+                continue
             for c in callset_ch:
                 pred, ps = predict_hp(c, ps_num, oneps_set[ch])
                 if pred == 0:

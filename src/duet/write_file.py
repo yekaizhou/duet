@@ -1,6 +1,6 @@
 # coding=utf-8
 
-from duet.read_file import init_chrom_list, read_file
+from read_file import init_chrom_list, read_file
 import logging
 
 def print_sv(phased_callset, output_path):
@@ -13,7 +13,7 @@ def print_sv(phased_callset, output_path):
                 '>\t.\tPASS\tSVLEN=' + str(c['svlen']) + '\tHP:PS\t' + c['hp'] + ':' + str(c['ps']) + '\n')
     f.close()
 
-def print_sv_header(vcf_path, output_path):
+def print_sv_header(vcf_path, output_path, include_all_ctgs):
     alt_str = """##ALT=<ID=INS,Description="Insertion of novel sequence relative to the reference">
 ##ALT=<ID=DEL,Description="Deletion relative to the reference">
 """
@@ -25,13 +25,17 @@ def print_sv_header(vcf_path, output_path):
     source_str = '##source=Duet\n'
     header_str = fileformat_str + source_str + alt_str + filter_str + info_str + format_str + '\n'
     vcf_str = read_file(vcf_path)
-    chrom_list = init_chrom_list()
-    contig_str = ['' for ch in range(24)]
-    for ch in range(24):
+    chrom_list = init_chrom_list(include_all_ctgs, vcf_path[:len(vcf_path) - 24])
+    if not include_all_ctgs:
+        for ch in range(24): 
+            for l in vcf_str:
+                if '##contig=<ID=chr' + chrom_list[ch] + ',' in l[0] or '##contig=<ID=' + chrom_list[ch] + ',' in l[0]:
+                    header_str += l[0] + '\n'
+                    continue
+    else:
         for l in vcf_str:
-            if '##contig=<ID=chr' + chrom_list[ch] + ',' in l[0] or '##contig=<ID=' + chrom_list[ch] + ',' in l[0]:
+            if '##contig=<ID=' in l[0]:
                 header_str += l[0] + '\n'
-                continue
     header_str += '#CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tFORMAT\tVALUE\n'
     f = open(output_path, 'w')
     f.write(header_str)

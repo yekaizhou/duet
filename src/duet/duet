@@ -5,11 +5,11 @@ import os
 import logging
 import time
 import sys
-from duet.utils import set_logging, parse_args, check_envs
-from duet.snp_calling import snp_calling
-from duet.snp_phasing import snp_phasing
-from duet.sv_calling import sv_calling
-from duet.sv_phasing import sv_phasing
+from utils import set_logging, parse_args, check_envs
+from snp_calling import snp_calling
+from snp_phasing import snp_phasing
+from sv_calling import sv_calling
+from sv_phasing import sv_phasing
 
 def main(argv):
     args = parse_args(argv)
@@ -20,10 +20,10 @@ def main(argv):
     lines = '*************************'
     starttime = time.time()
     logging.info(lines + ' DUET STARTED ' + lines)
-    snp_calling(args.OUTPUT, args.REFERENCE, args.BAM, args.min_allele_frequency, args.thread)
+    snp_calling(args.OUTPUT, args.REFERENCE, args.BAM, args.min_allele_frequency, args.thread, args.include_all_ctgs)
     sv_calling(args.OUTPUT, args.REFERENCE, args.BAM, args.cluster_max_distance, args.sv_min_size)
     snp_phasing(args.OUTPUT, args.REFERENCE, args.BAM, args.thread)
-    sv_phasing(args.OUTPUT, args.sv_min_size, args.min_support_read, args.thread)
+    sv_phasing(args.OUTPUT, args.sv_min_size, args.min_support_read, args.thread, args.include_all_ctgs)
     logging.info(lines + ' DUET FINISHED IN ' + str(round(time.time() - starttime, 3)) + 's ' + lines)
     logging.info('OUTPUT .VCF FILE AT ' + args.OUTPUT + '/phased_sv.vcf')
 

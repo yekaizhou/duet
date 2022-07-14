@@ -18,9 +18,9 @@ def set_logging(home):
 
 def parse_args(argv):
     parser = argparse.ArgumentParser(
-    #    description = 'SNP-Assisted Phased SV Detection from Low-depth Long-reads'
+       description = 'SNP-Assisted Structural Variant Calling and Phasing Using Oxford Nanopore Sequencing'
     )
-    parser.add_argument('-t', '--thread', type = int, default = 40,
+    parser.add_argument('-t', '--thread', type = int, default = 4,
         help = 'number of threads to use [%(default)s]')
     parser.add_argument('-m', '--min_allele_frequency', type = float, default = 0.25,
         help = 'minimum allele frequency required to call a candidate SNP [%(default)s]')
@@ -30,6 +30,8 @@ def parse_args(argv):
         help = 'minimum SV size to be reported [%(default)s]')
     parser.add_argument('-r', '--min_support_read', type = int, default = 2,
         help = 'minimum number of reads that support a SV to be reported [%(default)s]')
+    parser.add_argument('--include_all_ctgs', action = 'store_true',
+            help = 'call variants on all contigs, otherwise call chr{1..22,X,Y} [%(default)s]')
     parser.add_argument('BAM', type = str,
             help = 'sorted alignment file in .bam format (along with .bai file in the same directory)')
     parser.add_argument('REFERENCE', type = str,
