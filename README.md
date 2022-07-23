@@ -24,16 +24,16 @@ Whole genome sequencing (WGS) using the long-read Oxford Nanopore Technologies (
 
 ```shell
 # install via conda
-$ conda config --add channels bioconda && conda config --add channels conda-forge
-$ conda create -n duet -c bioconda duet -y && conda activate duet
+conda config --add channels bioconda && conda config --add channels conda-forge
+conda create -n duet -c bioconda duet -y && conda activate duet
 
 # or you can install from github
-$ conda config --add channels bioconda && conda config --add channels conda-forge
-$ conda create -n duet -c bioconda svim=1.4.2 clair3=0.1.11 bcftools=1.8 -y && conda activate duet
-$ git clone https://github.com/yekaizhou/duet.git
-$ cd duet && pip install .
+conda config --add channels bioconda && conda config --add channels conda-forge
+conda create -n duet -c bioconda svim=1.4.2 clair3=0.1.11 bcftools=1.8 -y && conda activate duet
+git clone https://github.com/yekaizhou/duet.git
+cd duet && pip install .
 
-$ duet -h
+duet -h
 ```
 
 ---
