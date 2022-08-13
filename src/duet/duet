@@ -21,7 +21,7 @@ def main(argv):
     starttime = time.time()
     logging.info(lines + ' DUET STARTED ' + lines)
     snp_calling(args.OUTPUT, args.REFERENCE, args.BAM, args.min_allele_frequency, args.thread, args.include_all_ctgs)
-    sv_calling(args.OUTPUT, args.REFERENCE, args.BAM, args.cluster_max_distance, args.sv_min_size)
+    sv_calling(args.OUTPUT, args.REFERENCE, args.BAM, args.cluster_max_distance, args.sv_min_size, args.thread, args.sv_caller, args.min_support_read)
     snp_phasing(args.OUTPUT, args.REFERENCE, args.BAM, args.thread)
     sv_phasing(args.OUTPUT, args.sv_min_size, args.min_support_read, args.thread, args.include_all_ctgs)
     logging.info(lines + ' DUET FINISHED IN ' + str(round(time.time() - starttime, 3)) + 's ' + lines)

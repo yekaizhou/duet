@@ -9,8 +9,11 @@ def print_sv(phased_callset, output_path):
     idx = 0
     for c in phased_callset:
         idx += 1
-        f.write(c['chrom'] + '\t' + str(c['pos']) + '\tDuet.' + str(idx) + '\tN\t<' + c['alt'] + \
-                '>\t.\tPASS\tSVLEN=' + str(c['svlen']) + '\tHP:PS\t' + c['hp'] + ':' + str(c['ps']) + '\n')
+        # f.write(c['chrom'] + '\t' + str(c['pos']) + '\tDuet.' + str(idx) + '\tN\t<' + c['alt'] + \
+        #         '>\t.\tPASS\tSVLEN=' + str(c['svlen']) + '\tHP:PS\t' + c['hp'] + ':' + str(c['ps']) + '\n')
+        f.write(c['chrom'] + '\t' + str(c['pos']) + '\tDuet.' + str(idx) + '\t' + c['ref'] + '\t' + c['alt'] + \
+                '\t.\tPASS\tSVLEN=' + str(c['svlen']) + ';SVTYPE=<'  + str(c['svtype']) + '>\tHP:PS\t' + \
+                c['hp'] + ':' + str(c['ps']) + '\n')
     f.close()
 
 def print_sv_header(vcf_path, output_path, include_all_ctgs):

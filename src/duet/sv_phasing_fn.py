@@ -55,6 +55,8 @@ def generate_callinfo(caller_path, read_hap, include_all_ctgs):
             callset[t]['chrom'] = comp_call[ch][c][0]
             callset[t]['pos'] = int(comp_call[ch][c][1])
             callset[t]['callid'] = comp_call[ch][c][2]
+            callset[t]['ref'] = comp_call[ch][c][3]
+            callset[t]['alt'] = comp_call[ch][c][4]
             callset[t]['qual'] = comp_call[ch][c][5]
             callset[t]['filt'] = comp_call[ch][c][6]
             callset[t]['svlen'] = abs(comp_call[ch][c][10])
@@ -220,7 +222,9 @@ def generate_phased_callset(vcf_path, sam_home, svlen_thres, suppread_thres, thr
                     phased_callset[-1]['hp'] = '1|1'
                 phased_callset[-1]['chrom'] = c['chrom']
                 phased_callset[-1]['pos'] = c['pos']
-                phased_callset[-1]['svlen'] = c['svlen'] if c['svtype'] == 'INS' else -c['svlen']
-                phased_callset[-1]['alt'] = c['svtype']
+                phased_callset[-1]['svlen'] = c['svlen'] if c['svtype'] in ['INS', 'DUP'] else -c['svlen']
+                phased_callset[-1]['svtype'] = c['svtype']
+                phased_callset[-1]['ref'] = c['ref']
+                phased_callset[-1]['alt'] = c['alt']
     phased_callset.sort(key = itemgetter('chrom', 'pos'))
     return phased_callset

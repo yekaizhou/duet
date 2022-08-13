@@ -7,7 +7,7 @@ with open('README.md') as f:
 
 setup(
     name = 'duet',
-    version = '0.4',
+    version = '0.5',
     description = 'SNP-Assisted Structural Variant Calling and Phasing Using Oxford Nanopore Sequencing',
     author = 'Yekai Zhou',
     author_email = 'yekai.zhou@outlook.com',

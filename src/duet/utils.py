@@ -25,13 +25,15 @@ def parse_args(argv):
     parser.add_argument('-m', '--min_allele_frequency', type = float, default = 0.25,
         help = 'minimum allele frequency required to call a candidate SNP [%(default)s]')
     parser.add_argument('-c', '--cluster_max_distance', type = float, default = 0.9,
-        help = 'maximum span-position distance between SV marks in a cluster to call a SV candidates [%(default)s]')
+        help = 'maximum span-position distance between SV marks in a cluster to call a SV candidates, when the base SV caller is SVIM [%(default)s]')
     parser.add_argument('-s', '--sv_min_size', type = int, default = 50,
         help = 'minimum SV size to be reported [%(default)s]')
     parser.add_argument('-r', '--min_support_read', type = int, default = 2,
         help = 'minimum number of reads that support a SV to be reported [%(default)s]')
-    parser.add_argument('--include_all_ctgs', action = 'store_true',
+    parser.add_argument('-a', '--include_all_ctgs', action = 'store_true',
             help = 'call variants on all contigs, otherwise call chr{1..22,X,Y} [%(default)s]')
+    parser.add_argument('-b', '--sv_caller', type = str, default = 'cutesv',
+        help = 'choose the base SV caller from either cuteSV ("cutesv") or SVIM ("svim") [%(default)s]')
     parser.add_argument('BAM', type = str,
             help = 'sorted alignment file in .bam format (along with .bai file in the same directory)')
     parser.add_argument('REFERENCE', type = str,
