@@ -73,7 +73,7 @@ def parse_vcf(vcf_path, skip_phasing, bed_path = ''):
         sv_info = s[7].split(';')
         if 'SVLEN' in s[7]:
             info[t]['len'] = abs(int([s for s in sv_info if 'SVLEN' in s][0][6:])) if 'SVLEN=>' not in s[7] else abs(int([s for s in sv_info if 'SVLEN' in s][0][7:]))
-            info[t]['type'] = s[4][1:-1] if s[4] in ['<INS>', '<DEL>', '<DUP:TANDEM>', '<DUP:INT>'] else [s for s in sv_info if 'SVTYPE' in s][0][7:]
+            info[t]['type'] = s[4][1:-1] if s[4] in ['<INS>', '<DEL>', '<DUP:TANDEM>', '<DUP:INT>', '<DUP>'] else [s for s in sv_info if 'SVTYPE' in s][0][7:]
             if 'DUP' in info[t]['type']:
                 info[t]['type'] = 'INS'
         else:
