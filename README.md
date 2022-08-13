@@ -41,6 +41,7 @@ duet -h
 
 - [clair3](https://github.com/HKU-BAL/Clair3) = 0.1.11
 - [svim](https://github.com/eldariont/svim) = 1.4.2
+- [cutesv](https://github.com/tjiangHIT/cuteSV) = 1.0.13
 - [bcftools](https://anaconda.org/bioconda/bcftools) = 1.8
 
 ---
