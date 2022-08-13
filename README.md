@@ -17,7 +17,7 @@ Whole genome sequencing (WGS) using the long-read Oxford Nanopore Technologies (
 
 ![](docs/overview.jpg)
 
-(A) First, ONT long reads are aligned using Minimap2. (B-C) To obtain the per-read phasing information (green or brown) with its confidence level (luminance of the color), SNPs (indicated in circles) are called using Clair3 and then phased using WhatsHap. Based on the phased SNPs, the haplotypes of the reads are determined by WhatsHap. (D) The SV marks on each read are detected by SVIM. (E) Three signatures from previous steps are integrated as the signature of the support reads. (F) Duet phases SV and filters out false signals based on the features derived from the signatures in step (E). T1 to T5 are thresholds for each feature.
+(A) First, ONT long reads are aligned using Minimap2. (B-C) To obtain the per-read phasing information (green or brown) with its confidence level (luminance of the color), SNPs (indicated in circles) are called using Clair3 and then phased using WhatsHap. Based on the phased SNPs, the haplotypes of the reads are determined by WhatsHap. (D) The SV marks on each read are detected by SVIM or cuteSV. (E) Three signatures from previous steps are integrated as the signature of the support reads. (F) Duet phases SV and filters out false signals based on the features derived from the signatures in step (E). T1 to T5 are thresholds for each feature.
 
 ---
 ### Installation
@@ -58,7 +58,8 @@ duet -h
 |--cluster_max_distance, -c|maximum span-position distance between SV marks in a cluster to call a SV candidates|0.9|
 |--sv_min_size, -s|minimum SV size to be reported|50|
 |--min_support_read, -r|minimum number of reads that support a SV to be reported|2|
-|--include_all_ctgs|call variants on all contigs, otherwise chr{1..22,X,Y}|false|
+|--include_all_ctgs, -a|call variants on all contigs, otherwise chr{1..22,X,Y}|false|
+|--sv_caller, -b|choose the base SV caller from either cuteSV ("cutesv") or SVIM ("svim")|cutesv|
 
 ---
 ### Output
