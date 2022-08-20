@@ -56,7 +56,7 @@ duet -h
 | :------------ |:---------------|-------------:|
 |--threads, -t|number of threads to use|4|
 |--min_allele_frequency, -m|minimum allele frequency required to call a candidate SNP|0.25|
-|--cluster_max_distance, -c|maximum span-position distance between SV marks in a cluster to call a SV candidates|0.9|
+|--cluster_max_distance, -c|maximum span-position distance between SV marks in a cluster to call a SV candidates when using SVIM as the base SV caller|0.9|
 |--sv_min_size, -s|minimum SV size to be reported|50|
 |--min_support_read, -r|minimum number of reads that support a SV to be reported|2|
 |--include_all_ctgs, -a|call variants on all contigs, otherwise chr{1..22,X,Y}|false|
