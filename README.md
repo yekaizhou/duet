@@ -55,10 +55,10 @@ duet -h
 | Optional Parameter | Description | Default |
 | :------------ |:---------------|-------------:|
 |--threads, -t|number of threads to use|4|
-|--min_allele_frequency, -m|minimum allele frequency required to call a candidate SNP|0.25|
-|--sv_min_size, -s|minimum SV size to be reported|50|
-|--min_support_read, -r|minimum number of reads that support a SV to be reported|2|
 |--include_all_ctgs, -a|call variants on all contigs, otherwise chr{1..22,X,Y}|false|
+|--sv_min_size, -s|minimum SV size to be reported|50|
+|--min_allele_frequency, -m|minimum allele frequency required to call a candidate SNP|0.25|
+|--min_support_read, -r|minimum number of reads that support a SV to be reported|2|
 |--sv_caller, -b|choose the base SV caller from either cuteSV ("cutesv") or SVIM ("svim")|cutesv|
 |--cluster_max_distance, -c|maximum span-position distance between SV marks in a cluster to call a SV candidates when using SVIM as the base SV caller|0.9|
 
