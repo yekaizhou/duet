@@ -91,6 +91,11 @@ less results/phased_sv.vcf
 ```
 
 ---
+### Citation
+
+Zhou, Y., Leung, A.WS., Ahmed, S.S. et al. Duet: SNP-assisted structural variant calling and phasing using Oxford nanopore sequencing. BMC Bioinformatics 23, 465 (2022). https://doi.org/10.1186/s12859-022-05025-x
+
+---
 ### Contact
 
 For any problems or suggestions, please post on [Github Issue](https://github.com/yekaizhou/duet/issues) or send to yekai.zhou@outlook.com.
