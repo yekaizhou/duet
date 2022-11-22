@@ -33,7 +33,7 @@ def parse_args(argv):
     parser.add_argument('-a', '--include_all_ctgs', action = 'store_true',
             help = 'call variants on all contigs, otherwise call chr{1..22,X,Y} [%(default)s]')
     parser.add_argument('-b', '--sv_caller', type = str, default = 'cutesv',
-        help = 'choose the base SV caller from either cuteSV ("cutesv") or SVIM ("svim") [%(default)s]')
+        help = 'choose the base SV caller from cuteSV ("cutesv"), Sniffles (sniffles), or SVIM ("svim") [%(default)s]')
     parser.add_argument('BAM', type = str,
             help = 'sorted alignment file in .bam format (along with .bai file in the same directory)')
     parser.add_argument('REFERENCE', type = str,
