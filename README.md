@@ -28,7 +28,7 @@ conda create -n duet -c bioconda duet -y && conda activate duet
 
 # or you can install from github
 conda config --add channels bioconda && conda config --add channels conda-forge
-conda create -n duet -c bioconda svim=1.4.2 clair3=0.1.11 bcftools=1.8 -y && conda activate duet
+conda create -n duet -c bioconda clair3=0.1.12 sniffles=2.0.7 cutesv=2.0.2 svim=1.4.2 bcftools=1.8 -y && conda activate duet
 git clone https://github.com/yekaizhou/duet.git
 cd duet && pip install .
 
@@ -38,9 +38,10 @@ duet -h
 ---
 ### Dependencies
 
-- [clair3](https://github.com/HKU-BAL/Clair3) = 0.1.11
-- [svim](https://github.com/eldariont/svim) = 1.4.2
-- [cutesv](https://github.com/tjiangHIT/cuteSV) = 1.0.13
+- [Clair3](https://github.com/HKU-BAL/Clair3) = 0.1.12
+- [SVIM](https://github.com/eldariont/svim) = 1.4.2
+- [cuteSV](https://github.com/tjiangHIT/cuteSV) = 2.0.2
+- [Sniffles](https://github.com/fritzsedlazeck/Sniffles) = 2.0.7
 - [bcftools](https://anaconda.org/bioconda/bcftools) = 1.8
 
 ---
@@ -58,7 +59,7 @@ duet -h
 |--sv_min_size, -s|minimum SV size to be reported|50|
 |--min_allele_frequency, -m|minimum allele frequency required to call a candidate SNP|0.25|
 |--min_support_read, -r|minimum number of reads that support a SV to be reported|2|
-|--sv_caller, -b|choose the base SV caller from either cuteSV ("cutesv") or SVIM ("svim")|cutesv|
+|--sv_caller, -b|choose the base SV caller from either cuteSV ("cutesv"), Sniffles (sniffles), or SVIM ("svim")|cutesv|
 |--cluster_max_distance, -c|maximum span-position distance between SV marks in a cluster to call a SV candidates when using SVIM as the base SV caller|0.9|
 
 ---
