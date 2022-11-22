@@ -28,7 +28,7 @@ conda create -n duet -c bioconda duet -y && conda activate duet
 
 # or you can install from github
 conda config --add channels bioconda && conda config --add channels conda-forge
-conda create -n duet -c bioconda clair3=0.1.12 sniffles=2.0.7 cutesv=2.0.2 svim=1.4.2 bcftools=1.8 -y && conda activate duet
+conda create -n duet -c bioconda clair3=0.1.12 sniffles=2.0.7 cutesv=2.0.2 svim=1.4.2 bcftools=1.16 -y && conda activate duet
 git clone https://github.com/yekaizhou/duet.git
 cd duet && pip install .
 
