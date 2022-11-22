@@ -42,7 +42,7 @@ duet -h
 - [SVIM](https://github.com/eldariont/svim) = 1.4.2
 - [cuteSV](https://github.com/tjiangHIT/cuteSV) = 2.0.2
 - [Sniffles](https://github.com/fritzsedlazeck/Sniffles) = 2.0.7
-- [bcftools](https://anaconda.org/bioconda/bcftools) = 1.8
+- [bcftools](https://anaconda.org/bioconda/bcftools) = 1.16
 
 ---
 ### Usage
