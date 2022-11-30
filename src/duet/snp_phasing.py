@@ -29,5 +29,5 @@ def snp_phasing(home, ref_path, aln_path, thread):
             snp_phasing_home + 'phased_{1}.vcf.gz ' + aln_path + '" ::: ${CHR[@]}\n')
     f.close()
     os.system('chmod a+x ' + snp_phasing_home + 'parallel_wh.sh')
-    os.system(snp_phasing_home + 'parallel_wh.sh')
+    os.system('bash ' + snp_phasing_home + 'parallel_wh.sh')
     logging.info(lines + ' SNP PHASING COMPLETED IN ' + str(round(time.time() - starttime, 3)) + 's ' + lines)
